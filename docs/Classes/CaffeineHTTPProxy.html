@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CaffeineHTTPProxy Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CaffeineHTTPProxy" class="dashAnchor"></a>
+    <a title="CaffeineHTTPProxy Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CaffeineHTTPProxy Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CaffeineHTTPProxy.html">CaffeineHTTPProxy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSURLSessionConfiguration.html">NSURLSessionConfiguration</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CaffeineHTTPProxy</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">CaffeineHTTPProxy</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">GCDAsyncUdpSocketDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>CaffeineHTTPProxy</code> hooks into the iOS URL loading system to accelerate the network requests you specify using <code>allow:</code> and <code>deny:</code>. </p>
+
+<p>The Caffeine API consists of 3 functions: <code>start</code>, <code>allow:</code>, and <code>deny:</code></p>
+
+<p>This class is packaged inside the <code>Proxeine</code> module, so it must be imported into your App Delegate.</p>
+
+<p>To a Swift project:</p>
+
+<pre class="highlight swift"><code>    <span class="kd">import</span> <span class="kt">Proxeine</span>
+</code></pre>
+
+<p>To an Objective-C Project:</p>
+
+<pre class="highlight objective_c"><code>    <span class="n">import</span> <span class="s">"Proxeine-Swift.h"</span>
+</code></pre>
+
+<p>Caffeine will work alongside networking libraries such as Alamofire or AFNetworking.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If at any time you require help, please contact our engineers at <a href="mailto:help@caffei.net">help@caffei.net</a></p>
+
+</div>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>NSURLSessions that do not use <code>NSURLSession.sharedSession</code> or the <code>NSURLSessionConfiguration.defaultSessionConfiguration</code> should call <code>addCaffeine</code> on their session configuration</p>
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8Proxeine17CaffeineHTTPProxy5startFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/start()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8Proxeine17CaffeineHTTPProxy5startFT_T_">start()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts Caffeine. <code>start</code> should be called first in your App Delegate&rsquo;s <code>application:didFinishLaunchingWithOptions:</code> function.</p>
+
+<p>By default, no requests are Caffeinated. To Caffeinate a request, it must be explicitly allowed using <code>allow:</code>.</p>
+
+<p>Swift:</p>
+
+<pre class="highlight swift"><code>   <span class="kd">import</span> <span class="kt">Proxeine</span>
+   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+       <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+       <span class="c1">//enter `allow` and `deny` filters here</span>
+   <span class="p">}</span>
+</code></pre>
+
+<p>Objective-C:</p>
+
+<pre class="highlight objective_c"><code>   <span class="n">import</span> <span class="s">"Proxeine-Swift.h"</span>
+   <span class="o">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">application</span><span class="o">:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="n">application</span> <span class="n">didFinishLaunchingWithOptions</span><span class="o">:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="n">launchOptions</span> <span class="p">{</span>
+       <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">start</span><span class="p">];</span>
+       <span class="c1">//enter `allow` and `deny` filters here
+</span>   <span class="p">}</span>
+</code></pre>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Calling this function twice is undefined.
+
+</div>
+
+<div class="aside aside-complexity">
+    <p class="aside-title">Complexity</p>
+    This function is asynchronous and returns immediately.
+
+</div>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code>allow:</code>, <code>deny:</code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">start</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8Proxeine17CaffeineHTTPProxy5allowFSST_"></a>
+                    <a name="//apple_ref/swift/Method/allow(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8Proxeine17CaffeineHTTPProxy5allowFSST_">allow(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>allow: Caffeinates specific URLs or sets of URLs. No requests will be proxied unless their URL is allowed. Call <code>allow</code> inside your AppDelegate, within the <code>application:didFinishLaunchingWithOptions:</code> function.</p>
+
+<p>Swift:</p>
+
+<pre class="highlight swift"><code>    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">)</span>
+    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"https://google.com/ *"</span><span class="p">)</span>
+    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"http:// *"</span><span class="p">)</span>
+    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"http://google.com/humans.txt"</span><span class="p">)</span>
+</code></pre>
+
+<p>Objective-C:</p>
+
+<pre class="highlight objective_c"><code>   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"*.jpg"</span><span class="p">];</span>
+   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"https://google.com/ *"</span><span class="p">];</span>
+   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"http:// *"</span><span class="p">];</span>
+   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"http://google.com/humans.txt"</span><span class="p">];</span>
+</code></pre>
+
+<p>This allow configurations (above) specify that the following will be Caffeinated:</p>
+
+<ul>
+<li>all PNG files</li>
+<li>all HTTPS traffic as long as it is from google.com/ (not subdomains ie. cats.google.com/)</li>
+<li>all HTTP traffic (not a recommended filter)</li>
+<li>the specific HTTP URL: <a href="http://google.com/humans.txt">http://google.com/humans.txt</a></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">allow</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8Proxeine17CaffeineHTTPProxy4denyFSST_"></a>
+                    <a name="//apple_ref/swift/Method/deny(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8Proxeine17CaffeineHTTPProxy4denyFSST_">deny(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>deny: Decaffeinates specific URLs or sets of URLs. <code>deny</code> overrides <code>allow</code>. No requests will be proxied if their URL is within a deny clause. Call <code>deny</code> inside your AppDelegate, within the <code>application:didFinishLaunchingWithOptions:</code> function.</p>
+
+<p>Swift:</p>
+
+<pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"https://google.com/ *"</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"http:// *"</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"http://google.com/humans.txt"</span><span class="p">)</span>
+</code></pre>
+
+<p>Objective-C:</p>
+
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"*.jpg"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"https://google.com/ *"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http:// *"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http://google.com/humans.txt"</span><span class="p">];</span>
+</code></pre>
+
+<p>This allow configurations (above) specify that the following will NOT be Caffeinated:</p>
+
+<ul>
+<li>all PNG files</li>
+<li>all HTTPS traffic as long as it is from google.com/ (not subdomains ie. cats.google.com/)</li>
+<li>all HTTP traffic (not a recommended filter)</li>
+<li>the specific HTTP URL: <a href="http://google.com/humans.txt">http://google.com/humans.txt</a></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">deny</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
