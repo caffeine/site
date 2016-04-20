@@ -73,6 +73,8 @@
 
 <p>Caffeine will work alongside networking libraries such as Alamofire or AFNetworking.</p>
 
+<p>This class uses the open source CocoaAsyncSocket library&rsquo;s <code>GCDAsyncUdpSocketDelegate</code> protocol for frictionless UDP-diagnostic logging.</p>
+
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>If at any time you require help, please contact our engineers at <a href="mailto:help@caffei.net">help@caffei.net</a></p>
@@ -172,16 +174,16 @@
 <p>Swift:</p>
 
 <pre class="highlight swift"><code>    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">)</span>
-    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"https://google.com/ *"</span><span class="p">)</span>
-    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"http:// *"</span><span class="p">)</span>
+    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"https://google.com*"</span><span class="p">)</span>
+    <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"http:*"</span><span class="p">)</span>
     <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"http://google.com/humans.txt"</span><span class="p">)</span>
 </code></pre>
 
 <p>Objective-C:</p>
 
 <pre class="highlight objective_c"><code>   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"*.jpg"</span><span class="p">];</span>
-   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"https://google.com/ *"</span><span class="p">];</span>
-   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"http:// *"</span><span class="p">];</span>
+   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"https://google.com*"</span><span class="p">];</span>
+   <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"http:*"</span><span class="p">];</span>
    <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="s">@"http://google.com/humans.txt"</span><span class="p">];</span>
 </code></pre>
 
@@ -224,16 +226,16 @@
 <p>Swift:</p>
 
 <pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">)</span>
-<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"https://google.com/ *"</span><span class="p">)</span>
-<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"http:// *"</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"https://google.com*"</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"http:*"</span><span class="p">)</span>
 <span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="s">"http://google.com/humans.txt"</span><span class="p">)</span>
 </code></pre>
 
 <p>Objective-C:</p>
 
 <pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"*.jpg"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"https://google.com/ *"</span><span class="p">];</span>
-<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http:// *"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"https://google.com*"</span><span class="p">];</span>
+<span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http:*"</span><span class="p">];</span>
 <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http://google.com/humans.txt"</span><span class="p">];</span>
 </code></pre>
 
