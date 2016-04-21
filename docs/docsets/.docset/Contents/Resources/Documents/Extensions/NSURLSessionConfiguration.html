@@ -70,6 +70,8 @@
                       <div class="abstract">
                         <p>Called on a session configuration before it&rsquo;s used to instantiate an NSURLSession instance.</p>
 
+<p>This should ONLY be called if the configuration is NOT the defaultSessionConfiguration.</p>
+
 <p>Swift:</p>
 
 <pre class="highlight swift"><code>   <span class="k">let</span> <span class="nv">configuration</span> <span class="o">=</span> <span class="kt">NSURLSessionConfiguration</span><span class="o">.</span><span class="nf">ephemeralSessionConfiguration</span><span class="p">()</span>
