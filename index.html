@@ -1,182 +1,512 @@
 <!DOCTYPE html>
-<!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Tue Feb 23 2016 21:21:03 GMT+0000 (UTC) -->
-<html data-wf-site="56b00b257fb67c280d6b0051" data-wf-page="56b00b267fb67c280d6b0054">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Caffeine - Faster native iOS Application networking</title>
-  <meta name="description" content="Native mobile applications can now be responsive. Lowered latency results in increased conversion.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Webflow">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/webflow.css">
-  <link rel="stylesheet" type="text/css" href="css/alades-dynamite-site.webflow.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ["Roboto:300,regular,500","Roboto Condensed:300,regular,700","Roboto Slab:300,regular,700","Arbutus Slab:regular"]
-      }
-    });
-  </script>
-  <script type="text/javascript" src="js/modernizr.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="images/New icon.ico">
-  <link rel="apple-touch-icon" href="images/metric-webclip.png">
-</head>
-<body>
-  <div data-collapse="medium" data-animation="default" data-duration="400" data-contain="1" class="w-nav navigation">
-    <div class="w-container">
-      <a href="index.html" class="w-nav-brand brand-link">
-        <div class="logo-text">caffeine</div>
-      </a>
-      <nav role="navigation" class="w-nav-menu nav-menu"><a href="#features" class="w-nav-link nav-link">Features</a><a href="#pricing" class="w-nav-link nav-link">Pricing</a>
-      </nav>
-      <div class="w-nav-button nav-link menu">
-        <div class="w-icon-nav-menu"></div>
-      </div>
-    </div>
-  </div>
-  <div data-animation="slide" data-duration="500" data-infinite="1" class="w-slider slider">
-    <div class="w-slider-mask">
-      <div class="w-slide slide _1">
-        <div class="w-container"></div>
-      </div>
-      <div class="w-slide slide _2">
-        <div class="w-container"></div>
-      </div>
-      <div class="w-slide slide _3">
-        <div class="w-container"></div>
-      </div>
-    </div>
-    <div class="w-slider-arrow-left">
-      <div class="w-icon-slider-left"></div>
-    </div>
-    <div class="w-slider-arrow-right">
-      <div class="w-icon-slider-right"></div>
-    </div>
-    <div class="w-slider-nav w-round"></div>
-  </div>
-  <div id="top" class="w-section section main">
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-2">
-          <h1 class="main-heading"></h1>
-        </div>
-        <div class="w-col w-col-8">
-          <h1 class="main-heading">&nbsp;Native Mobile Applications are Unnecessarily Slow</h1>
-          <p class="main-subtitle">We're iOS developers who've spent the last three years obsessed with removing every unnecessary byte in application communications</p><a href="#features" class="button hollow">Learn More</a>
-        </div>
-        <div class="w-col w-col-2"></div>
-      </div>
-    </div>
-  </div>
-  <div id="features" class="w-section section">
-    <div class="w-container">
-      <h2><strong data-new-link="true">caffeine</strong><br>Networking Redesigned for Mobile</h2>
-      <div class="section-subtitle">The&nbsp;<strong data-new-link="true">fastest</strong>&nbsp;networking stack <strong data-new-link="true">for native iOS apps</strong>
-      </div>
-      <div class="w-row feature-row">
-        <div class="w-col w-col-6"><img width="394" src="images/cheetah-312034__340.png" data-ix="fade-in-on-scroll">
-        </div>
-        <div class="w-col w-col-6">
-          <div class="main-feature-group"><img height="30" src="images/speedometer.png" class="feature-icon">
-            <h3>Speed</h3>
-            <p>Because caffeine intelligently sends less data across the wire, people can engage with their content 2-10x faster.</p>
-          </div>
-        </div>
-      </div>
-      <div class="w-row feature-row">
-        <div class="w-col w-col-6">
-          <div class="main-feature-group"><img height="30" src="images/security.png" class="feature-icon">
-            <h3>Security is a philosophy, not a feature</h3>
-            <p>No extra work is required. Developers don't get to decide whether or not security ships. No more certificate signing, configuration, and implementation time. End-to-end security is implied.</p>
-          </div>
-        </div>
-        <div class="w-col w-col-6"><img width="323" src="images/ipad.jpeg" data-ix="fade-in-on-scroll">
-        </div>
-      </div>
-      <div class="feature-row">
-        <div class="w-row feature-row">
-          <div class="w-col w-col-6"><img src="images/Metric-screenshot2.png" data-ix="fade-in-on-scroll">
-          </div>
-          <div class="w-col w-col-6">
-            <div class="main-feature-group"><img height="30" src="images/integration.png" class="feature-icon">
-              <h3>Less Bandwidth</h3>
-              <p>Your hosting bill will go down. Because Caffeine removes the unnecessary data, total bandwidth decreases. Get rid of the bloat.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="pricing" class="w-section section purple">
-    <div class="w-container">
-      <h2>How to get Caffeine</h2>
-      <a href="./docs/index.html" class="button in-pricing">Read the docs</a>
-      <br />
-            <br />
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrf-token">
+    <meta content="Caffeine - Data transmission designed for iOS" property=
+    "og:title">
+    <meta content="http://Caffeine.io/images/Caffeine-fb.jpg" property=
+    "og:image">
+    <meta content="The Future of Mobile Networking" property=
+    "og:description">
+    <title>Caffeine: iOS Applications without all the network lag</title>
+<link rel="icon" type="image/ico" href="http://www.mysite.com/favicon.ico"/>
 
-      <div class="section-subtitle">Let us become obsessed with your product's performance</div>
-      <div class="feature-row">
-        <div class="w-row">
-          <div class="w-col w-col-4"></div>
-          <div class="w-col w-col-4">
-            <div data-ix="fade-in-on-scroll" class="plan-wrapper">
-              <h3>Caffeine Stack</h3>
-              <div>
-                <div>
-                  <ul class="w-list-unstyled">
-                    <li>Faster</li>
-                    <li>End-to-End Secured</li>
-                    <li>Uses Less Bandwidth</li>
-                  </ul>
+    <script src="js/html5shiv.min.js" type="text/javascript">
+    </script>
+    <script src="vendor/bower_components/jquery/dist/jquery.min.js" type=
+    "text/javascript">
+    </script>
+    <script src="vendor/bower_components/progress.js/src/progress.js" type=
+    "text/javascript">
+    </script>
+    <script src="vendor/bower_components/jquery.transit/jquery.transit.js"
+    type="text/javascript">
+    </script>
+    <script src="vendor/bower_components/jquery.ui/jquery-ui.min.js" type=
+    "text/javascript">
+    </script>
+    <script src="vendor/bower_components/jquery.subscribe/index.js" type=
+    "text/javascript">
+    </script>
+    <script src="vendor/bower_components/tooltipsy/tooltipsy.min.js" type=
+    "text/javascript">
+    </script>
+    <script src="vendor/bower_components/bootstrap/dist/js/bootstrap.min.js"
+    type="text/javascript">
+    </script>
+    <script src="vendor/bower_components/jquery-timeago/jquery.timeago.js"
+    type="text/javascript">
+    </script>
+    <script src="js/circle-progress.js" type="text/javascript">
+    </script>
+    <link href="stylesheets/reset.css" media="all" rel="stylesheet">
+    <script src="vendor/pages/classie/classie.js" type="text/javascript">
+    </script>
+    <link href="vendor/bower_components/fontawesome/css/font-awesome.min.css"
+    rel="stylesheet">
+    <link href="stylesheets/pages-icons.css" rel="stylesheet" type="text/css">
+    <link href="vendor/bower_components/bootstrap/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+    
+    <link href=
+    "https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic,300italic,300"
+    rel="stylesheet" type="text/css">
+    <link href="stylesheets/global.css" media="screen" rel="stylesheet">
+    <script src="js/anchorSmoothScroll.js" type="text/javascript">
+    </script>
+    <script>
+    $(window).ready( function() {
+    parallaxHeader();
+    });
+    </script>
+    <style>
+    #header .logo{
+    color: #FFF;
+    }
+    </style>
+    <script type="text/javascript">
+    var pathString = "/enterprise";
+    window.onConsolePage = pathString.indexOf("console") > -1;
+    window.onTeamsPage = pathString.indexOf("teams") > -1;
+    </script>
+</head>
+<body class="no-js">
+    <a id="top" name="top"></a>
+    <header id="header">
+        <div class="branding">
+            <div class="container" style="width: inherit">
+                <div class="logo small">
+                    <a href="index.html">Caffeine</a>
                 </div>
-              </div>
-              <div class="divider"></div>
-              <div class="addl-feature"><strong>24/7</strong> Support</div>
-              <div class="addl-feature inactive">Integration Services</div>
-              <div class="addl-feature inactive">Analytics</div><a href="mailto:beyondjava@caffei.net" class="button in-pricing">Contact Us</a>
             </div>
-          </div>
-          <div class="w-col w-col-4"></div>
         </div>
-      </div>
-      <div class="additional-contact">Any questions? Please <a class="page-link" href="mailto:beyondjava@caffei.net">contact us</a>.</div>
-    </div>
-  </div>
-  <div class="w-section section footer">
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-9">
-          <div class="logo-text footer">We believe we can make your app twice as fast</div>
-          <div class="footer-slogan">"Oh, we don't travel at the speed of anything," Mrs. Whatsit explained quite earnestly. "We tesser."
-            <br>&nbsp;<em data-new-link="true">Madeleine L'Engle, A Wrinkle in Time </em>
-          </div>
+        <nav class="mainNav">
+            <div class="container" style="padding-top:1em;padding-bottom:1em;">
+                <ul class="menu centerMobile">
+                    <li>
+                        <a class="alt-font" href="index.html" style=
+                        "opacity: 0.5">Preview</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href=
+                        "enterprise.html">Enterprise</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href="pricing.html">Pricing</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href="enterprise.html#demo"
+                         style="cursor:pointer">Sign Up</a>
+                    </li>
+                    <!--<li style="">
+                        <a class="alt-font" href="account/login.html">Sign
+                        In</a>
+                    </li>-->
+                </ul>
+                <script type="text/javascript">
+                //- alert("making hamburger2 draggable");
+                $('.dragContainer').draggable({
+                scroll: false,
+                start: function(event, ui) {
+                $(this).addClass('noclick');
+                $('#mouseBlocker').removeClass('invisible');
+                },
+                stop: function(event, ui) {
+                $(this).removeClass('noclick');
+                $('#mouseBlocker').addClass('invisible');
+                }
+                });
+                </script>
+                
+                <ul class="social-icons centerMobile">
+                    <li>
+                        <a href="https://twitter.com/HelloCaffeine"><i class=
+                        "icon social_twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href=
+                        "http://www.facebook.com/HelloCaffeine"><i class=
+                        "icon social_facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href=
+                        "https://instagram.com/helloCaffeine/"><i class=
+                        "icon social_instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <section id="content" style="background-color:#fff">
+        <a id="content" name="content"></a><a id="content" name="content"></a>
+        <section class="section" style="margin-bottom: 0px;">
+            <div class="container" id="hero">
+                <div class="center">
+                    <div id="flashContainer"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="logoHero center" style=
+                        "margin-left: -10px;">
+                            Caffeine
+                        </div><br>
+                        <br>
+                        <h4 class="center">What you have vs. Caffeine
+                        </h4><br>
+                        <br>
+                    </div>
+                    <div class="col-xs-12" id="videoHolder">
+                        <div id="noVideoImgBackup" style=
+                        "position: relative; display:none">&nbsp;<img src=
+                        "images/backupVideo.png"></div><video autoplay="" id=
+                        "videoNode" loop="" src=
+                        "videos/iphonesite.mp4" style=
+                        "max-width:100%; -webkit-filter: brightness(1.085); filter: brightness(1.085);"></video>
+                    </div><br>
+                    <h2 class="centerMobile" style=
+                    "max-width:800px; margin:auto"><b>Things now made possible with Caffeine: </b><br /> No.1: Low-latency image scrolling from a server in Switzerland to a phone in the U.S. <br /> No.2: Try it out and let us know!  </h2><br>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </section>
+        <section style="background-color:#000">
+            <div class="container center" style="padding-bottom:4em">
+                <br>
+                <h1 style="color:#fff">What is Caffeine?</h1>
+                <h4 style="color:#eee"> 3 years of R&D by frustrated iOS developers— a purely software solution that speeds the hell out of your iOS network requests. </h4>
+                <div class="row">
+                    <a href="#elegantSimplicity" style="color:#fff">
+                    <div class=
+                    "hoverPop col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+                    <img class="centerMobile" onerror=
+                    "this.onerror=null; this.src=''" src=
+                    "images/svg/lg_control.svg">
+                        <h2 style="color:#eee">Hassle Free</h2>
+                        <p style="color: #999">Caffeine works out of the box, and integration takes 15 minutes. Get back to building features, stop worrying about low level performance optimizations. </p>
+                    </div></a><a href="#unlimitedPower" style="color:#fff">
+                    <div class=
+                    "hoverPop col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+                    <img class="centerMobile" onerror=
+                    "this.onerror=null; this.src=''" src=
+                    "images/svg/lg_power.svg">
+                        <h2 style="color:#eee">Blistering Speed</h2>
+                        <p style="color: #999">Caffeine is faster than your CDN and works even when other tools like caching and compression can't. User login, API requests, uploads, and even loading fresh data on launch are all accelerated by our tech.</p>
+                    </div></a><a href="#anyDevice" style="color:#fff">
+                    <div class=
+                    "hoverPop col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+                    <img class="centerMobile" onerror=
+                    "this.onerror=null; this.src=''" src=
+                    "images/svg/lg_anywhere.svg">
+                        <h2 style="color:#eee">Just iOS</h2>
+                        <p style="color: #999">Current solutions are jack of all trades, master of none. Caffeine is laser-focused on iOS performance and we say no to anything that slows us down.</p>
+                    </div></a><a href="#security" style="color:#fff">
+                    <div class=
+                    "hoverPop col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+                    <img class="centerMobile" onerror=
+                    "this.onerror=null; this.src=''" src=
+                    "images/svg/lg_secure.svg">
+                        <h2 style="color:#eee">Fully Secure</h2>
+                        <p style="color: #999">Caffeine protects your data using NaCl, the peer-reviewed cryptographic library written for next-generation applications. Each request is protected with 256-bit elliptical curve cryptography with PFS.</p>
+                    </div></a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        <section class="section" style="background-color:#fff">
+            <div class="container">
+                <div class="row centerMobile">
+                    <div class="col-sm-6">
+                        <img src="images/iphoneblack.png"><br>
+                        <br>
+                    </div>
+                    <div class="col-sm-6">
+                        <h1 class=
+                        "semi-bold">The Caffeine advantage</h1>
+                        <h2>Scroll like butter</h2><br>
+                        <br>
+                        <div class="centerMobile" style=
+                        "max-width:600px; float: left">
+                            <p>Customers expect mobile apps to be, well, <strong>mobile</strong>.  They should be fast not just on your test WiFi but in the checkout line with poor signal and when you're under time pressure in that windowless meeting room. Caffeine provides breakthrough network performance even in cases when the network isn't so reliable.</p>
+                            <p>The secret is simple: we take the same technology used by high-frequency traders for fast, secure, interference-free networking.  And we add many novel techniques we've learned working on the world's leading iOS applications.  The result is fast, consistent network performance, even if you think your app is optimized already.
+                            <br>
+                        </div><br>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" style="background-color:#fafafa">
+                <div class="container">
+                    <div class="row">
+                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img 
+                            src="images/realtime.png"></div>
+                            <h3 class="title">Real-Time</h3>
+                            <p>Caffeine was built for frequent server requests. Improve user experiences for messaging, geopositioning, search, and dense media experiences.</p><br>
+                        </div>
+                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img 
+                            src="images/staticassets.png"></div>
+                            <h3 class="title">Static Assets</h3>
+                            <p>With Caffeine you can speed up the loading of your images, video, or anything a CDN can.</p><br>
+                        </div>
+                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img src="images/building.png"></div>
+                            <h3 class="title">Enterprise</h3>
+                            <p>Mobile applications are the center of the enterprise, and it's very important to us that we continue to be trusted by the organizations with whom we work.</p><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img
+                            src="images/developer.png"></div>
+                            <h3 class="title">Hacking</h3>
+                            <p>For the awesome side project, the small SaaS project, or viral application: punch above your weight to create the performance that used to require dozens of engineers. </p><br>
+                        </div>                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img                        
+                            src="images/world.png"></div>
+                            <h3 class="title">Global</h3>
+                            <p>In emerging markets, network speed is even more important. A Caffeinated application on a 3G connection can now <i>feel</i> like using a 4G connection.</p><br>
+                        </div>
+                        <div class=
+                        "col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                            <div id="usecases"><img
+                            src="images/upload.png"></div>
+                            <h3 class="title">Uploading and Downloading</h3>
+                            <p>If your application's user experience is adversely affected by poor upload or download speeds, Caffeine will make a compelling difference.</p><br>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <hr>
         </div>
-        <div class="w-col w-col-3">
-          <h4 class="footer-title">Navigation</h4><a href="#" class="page-link in-footer">Home</a><a href="#" class="page-link in-footer">Features</a><a href="#" class="page-link in-footer">Pricing</a>
+        <div class="section">
+            <div class="container">
+                <h1 class="centerMobile">The 15 minute Caffeine integration could collectively save your userbase many lifetimes. Try us out, let us prove it. </h1><br>
+                <br>
+                <br>
+                <div class="center">
+                    <a href="enterprise.html#demo"><input class="hollow blue"
+                     name="submit" style="margin:auto; width:14em; cursor:pointer"
+                    value="Sign up for a Trial"></a>
+                </div><br>
+            </div>
         </div>
-      </div>
+    </section>
+    </section>
+    </section>
+    </header>
+
+    <footer id="footer">
+        <div style="padding:3em;">
+            <div class="logo small">
+                <a href="index.html">Caffeine</a>
+            </div>
+            <nav id="footerNav">
+                <ul>
+                    <li class="sections">
+                        <ul>
+                            <li>
+                                <a class="alt-font" href=
+                                "index.html">Preview</a>
+                            </li>
+                            <li>
+                                <a class="alt-font" href=
+                                "enterprise.html">Enterprise</a>
+                            </li>
+                            <!--<li>
+                                <a class="alt-font" href=
+                                "account/login.html">Sign In</a>
+                            </li>-->
+                        </ul>
+                    </li>
+                    <li class="clients">
+                        <ul>
+                            <!--<li style="color: #666;"><span class=
+                            "alt-font">Company</span></li>-->
+                            <li>
+                                <a class="alt-font" href="about.html">About</a>
+                            </li>
+                            <li>
+                                <a class="alt-font" href="docs/index.html">Documentation</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="social">
+                        <ul>
+                            <li>
+                                <a href=
+                                "https://twitter.com/HelloCaffeine"><i class=
+                                "icon social_twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href=
+                                "http://www.facebook.com/HelloCaffeine"><i class="icon social_facebook">
+                                </i></a>
+                            </li>
+                            <li>
+                                <a href=
+                                "https://instagram.com/helloCaffeine/"><i class="icon social_instagram">
+                                </i></a>
+                            </li>
+                        </ul>
+                    </li>
+                -->
+                </ul>
+            </nav>
+            <div class="clearfix"></div><span class="pull-right alt-font">©
+            2016 Caffeine</span><span><i class="icon icon_pin"></i> 25 First St #303 Cambridge, MA</span><span style="padding-left:1.5em"><i class=
+            "icon icon_mail"></i> help@caffei.net<br></span>
+            <div class="clearfix"></div>
+        </div><a class="slide-round" href="#top">
+        <div class="overflow">
+            <svg class="off" style="enable-background:new 0 0 56 56;" viewbox=
+            "0 0 56 56">
+            <polygon points=
+            "23.5,28.2 31.3,36 32,35.3 24.2,27.5 32,19.7 31.3,19 23.5,26.8 22.8,27.5">
+            </polygon></svg><svg class="on" style=
+            "enable-background:new 0 0 56 56;" viewbox="0 0 56 56">
+            <polygon points=
+            "23.5,28.2 31.3,36 32,35.3 24.2,27.5 32,19.7 31.3,19 23.5,26.8 22.8,27.5">
+            </polygon></svg>
+        </div></a>
+        <div class="clearfix"></div>
+    </footer>
+    <div id="fixedHeader">
+        <div class="branding">
+            <div class="container" style="width: inherit">
+                <div class="logo small">
+                    <a href="index.html">Caffeine</a>
+                </div>
+            </div>
+        </div>
+        <nav class="mainNav">
+            <div class="container" style="padding-top:1em;padding-bottom:1em;">
+            <div class="row">
+                <ul class="menu centerMobile">
+                    <li>
+                        <a class="alt-font" href="index.html" style=
+                        "opacity: 0.5">Preview</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href=
+                        "enterprise.html">Enterprise</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href="pricing.html">Pricing</a>
+                    </li>
+                    <li>
+                        <a class="alt-font" href="enterprise.html#demo"
+                         style="cursor:pointer">Sign Up</a>
+                    </li>
+                    <!--<li style="">
+                        <a class="alt-font" href="account/login.html">Sign
+                        In</a>
+                    </li>-->
+                </ul>
+                <script type="text/javascript">
+                //- alert("making hamburger2 draggable");
+                $('.dragContainer').draggable({
+                scroll: false,
+                start: function(event, ui) {
+                $(this).addClass('noclick');
+                $('#mouseBlocker').removeClass('invisible');
+                },
+                stop: function(event, ui) {
+                $(this).removeClass('noclick');
+                $('#mouseBlocker').addClass('invisible');
+                }
+                });
+                </script>
+                <!--
+                <ul class="social-icons centerMobile">
+                    <li>
+                        <a href="https://twitter.com/HelloCaffeine"><i class=
+                        "icon social_twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href=
+                        "http://www.facebook.com/HelloCaffeine"><i class=
+                        "icon social_facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href=
+                        "https://instagram.com/helloCaffeine/"><i class=
+                        "icon social_instagram"></i></a>
+                    </li>
+                </ul>
+            -->
+            </div>
+            </div>
+        </nav>
     </div>
-  </div>
-  <div class="w-section section footer copyright">
-    <div class="w-container">
-      <div>Copyright 2016 Caffeine. All Rights Reserved.&nbsp;</div>
+    <div id="overlay"></div>
+    <div aria-hidden="false" aria-labelledby="modalSlideUpLabel" class=
+    "modal fade slide-up disable-scroll" id="earlyAccessModal" role="dialog"
+    tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content-wrapper">
+                <div class="modal-content">
+                    <div class="modal-header clearfix">
+                        <button aria-hidden="true" class="close" data-dismiss=
+                        "modal" type="button"><i class="pg-close"></i></button>
+                        <h2>We are currently oversubscribed!</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="https://Caffeine.com/waitlist" id=
+                        "waitlist-form" method="post" name="waitlist-form">
+                            <h4>We are at max capacity and adding new machines
+                            as quickly as we can. Thanks for staying patient
+                            and apologies for the delay. Sign up now to get on
+                            the waitlist.</h4><br>
+                            <div class="row" style=
+                            "max-width:18em; margin:auto">
+                                <input autocomplete="off" class="placeholder"
+                                id="primaryEmailInput" name="email"
+                                placeholder="Enter email address" style=
+                                "margin:auto;" type="email"><input name="_csrf"
+                                type="hidden"><br>
+                            </div>
+                            <div class="row" style=
+                            "max-width:18em; margin:auto">
+                                <button class="hollow green" type="submit">Get
+                                access</button>
+                            </div><br>
+                        </form><br>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
-  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+    <script type="text/javascript">
+    $("#waitlist-form button[type=submit]").prop("disabled", true);
+    $("#primaryEmailInput").on('change keydown paste input', function(){
+    if ( $(this).val().length > 0 ) {
+        $("#waitlist-form button[type=submit]").prop("disabled", false);
+    } else {
+        $("#waitlist-form button[type=submit]").prop("disabled", true);
+    }
+    });
+    </script>
+    <script>
+    var gravatar_email = "";
+    </script>
+    <script src="js/custom.js" type="text/javascript">
+    </script>
+    
+    <script type="text/javascript">
+    $('#header').css({'flex-shrink': '0'});
+    </script>
+    
 </body>
 </html>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-76795314-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
