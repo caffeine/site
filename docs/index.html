@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-76795314-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 <html lang="en">
   <head>
     <title>  Reference</title>
@@ -23,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p><a href="index.html"> Docs</a> (83% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,32 +57,57 @@
 <p>No backend changes. Takes about 15 minutes inside Xcode. You work with three APIs inside the <a href="./Classes/CaffeineHTTPProxy.html">CaffeineHTTPProxy</a> class. The steps are described below. </p>
 <a href='#steps_to_integrate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='steps_to_integrate'>Steps to Integrate</h2>
 
-<p>You should have received a Caffeine bundle containing six items: four frameworks and two files (picture below). If you have not, please contact us at <a href="mailto:help@caffei.net">help@caffei.net</a>. </p>
+<p>You should have received a Caffeine bundle containing six items: four frameworks and two files (picture below) which you will copy into your application bundle. If you have not, please contact us at <a href="mailto:help@caffei.net">help@caffei.net</a>. </p>
 
 <p><img src="./CaffeineBundleSS.png" alt="CaffeineBundle"></p>
 
 <ul>
 <li>The caffeine.license file is required to use Caffeine. It contains information that uniquely identifies your organization.</li>
 <li>CocoaAsyncSocket.framework is an <a href="https://github.com/robbiehanson/CocoaAsyncSocket">open source library</a> that Caffeine uses for fast-UDP diagnostic logging.</li>
-<li>NaOH.framework is an <a href="https://code.sealedabstract.com/drewcrawford/NaOH">open source library</a> built and maintained by us - forked from <a href="https://github.com/jedisct1/libsodium">libsodium</a>, implementing Caffeine’s security.</li>
+<li>NaOH.framework (pronounced <q>sodium hydroxide</q>) is an <a href="https://code.sealedabstract.com/drewcrawford/NaOH">open source library</a> built and maintained by us - forked from <a href="https://github.com/jedisct1/libsodium">libsodium</a>, implementing Caffeine’s security.</li>
 <li>Nitrogen.framework contains our proprietary protocol.</li>
 <li>Proxeine.framework is the interpreter (proxy) that converts whatever
 networking library is used on the client into Caffeine.</li>
 <li>Proxy.key contains the public key the client will use to authenticate with
 our proxy server.</li>
 </ul>
-<a href='#1_drag_and_drop_the_four_frameworks_into_the_embedded_binaries_section_in_xcode_found_on_the_project_s_general_tab' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='1_drag_and_drop_the_four_frameworks_into_the_embedded_binaries_section_in_xcode_found_on_the_project_s_general_tab'>1. Drag and drop the four frameworks into the Embedded Binaries section in Xcode (found on the project’s general tab).</h3>
+<a href='#1_drag_and_drop_the_four_frameworks_into_the_embedded_binaries_section_in_xcode_found_on_the_project_s_general_tab_in_the_subsequent_prompt_make_sure_to_check_copy_items_if_needed_before_pressing_finish' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='1_drag_and_drop_the_four_frameworks_into_the_embedded_binaries_section_in_xcode_found_on_the_project_s_general_tab_in_the_subsequent_prompt_make_sure_to_check_copy_items_if_needed_before_pressing_finish'>1. Drag and drop the four frameworks into the Embedded Binaries section in Xcode (found on the project’s general tab). In the subsequent prompt, make sure to check “Copy items if needed” before pressing “Finish”.</h3>
 
 <p><img src="./DragAndDropSS.png" alt="DragAndDropSS"></p>
-<a href='#2_drag_and_drop_the_code_proxy_key_code_and_code_caffeine_license_code_into_the_xcode_project_and_add_and_copy_to_the_main_application_target' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='2_drag_and_drop_the_code_proxy_key_code_and_code_caffeine_license_code_into_the_xcode_project_and_add_and_copy_to_the_main_application_target'>2. Drag and drop the <code>proxy.key</code> and <code>caffeine.license</code> into the Xcode project and add (and copy) to the main application target.</h3>
+
+<p><img src="./FrameworksFinalCopySS.png" alt="FrameworksFinalCopySS"></p>
+<a href='#you_should_now_see_all_four_frameworks_present_within' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='you_should_now_see_all_four_frameworks_present_within'>You should now see all four frameworks present within</h3>
+
+<p>a)  Xcode’s Project Navigator</p>
+
+<p>b)  The Embedded Binaries section</p>
+
+<p>c)  The Linked Frameworks and Libraries section</p>
+
+<p>(pictured below)</p>
+
+<p><img src="./FrameworksPresentWithinSS.png" alt="FrameworksPresentWithinSS"></p>
+<a href='#2_drag_and_drop_the_code_proxy_key_code_and_code_caffeine_license_code_into_the_xcode_project_and_add_and_copy_to_the_main_application_target_again_ensure_that_copy_items_if_needed_is_checked_in_the_subsequent_prompt' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='2_drag_and_drop_the_code_proxy_key_code_and_code_caffeine_license_code_into_the_xcode_project_and_add_and_copy_to_the_main_application_target_again_ensure_that_copy_items_if_needed_is_checked_in_the_subsequent_prompt'>2. Drag and drop the <code>proxy.key</code> and <code>caffeine.license</code> into the Xcode project and add (and copy) to the main application target. Again, ensure that “Copy items if needed” is checked in the subsequent prompt.</h3>
 
 <p><img src="./DragAndDropFilesSS.png" alt="DragAndDropFilesSS"></p>
 
 <p><img src="./AddingToMainTargetSS.png" alt="AddingToMainTargetSS"></p>
+<a href='#you_should_now_see_the_two_files_caffeine_license_and_proxy_key_within_xcode_s_project_navigator_pictured_below' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='you_should_now_see_the_two_files_caffeine_license_and_proxy_key_within_xcode_s_project_navigator_pictured_below'>You should now see the two files “caffeine.license” and “proxy.key” within Xcode’s Project Navigator (pictured below)</h3>
+
+<p><img src="./FilesPresentInNavigatorSS.png" alt="FilesPresentInNavigatorSS"></p>
 <a href='#3_in_the_main_target_s_build_settings_set_embedded_content_contains_swift_code_to_yes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='3_in_the_main_target_s_build_settings_set_embedded_content_contains_swift_code_to_yes'>3. In the main target’s build settings, set “Embedded Content Contains Swift Code” to Yes</h3>
 
 <p><img src="./EmbeededContainsSwiftSS.png" alt="EmbeededContainsSwiftSS"></p>
-<a href='#4_in_your_app_delegate_import_the_proxeine_framework_locate_the_application_didfinishlaunchingwithoptions_function_and_call_the_code_start_code_function' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='4_in_your_app_delegate_import_the_proxeine_framework_locate_the_application_didfinishlaunchingwithoptions_function_and_call_the_code_start_code_function'>4. In your App Delegate, import the Proxeine framework. Locate the application:didFinishLaunchingWithOptions: function and call the <code>start()</code> function:</h3>
+<a href='#4_in_your_app_delegate_import_the_proxeine_framework' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='4_in_your_app_delegate_import_the_proxeine_framework'>4. In your App Delegate, import the Proxeine framework.</h3>
+
+<p>Swift:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Proxeine</span>
+</code></pre>
+
+<p>Objective-C:</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Proxeine/Proxeine-Swift.h&gt;
+</span></code></pre>
+<a href='#5_locate_the_code_application_didfinishlaunchingwithoptions_code_function_and_call_the_code_start_code_function' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='5_locate_the_code_application_didfinishlaunchingwithoptions_code_function_and_call_the_code_start_code_function'>5. Locate the <code>application:didFinishLaunchingWithOptions:</code> function and call the <code>start()</code> function:</h3>
 
 <p>Swift:</p>
 <pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
@@ -101,7 +116,7 @@ our proxy server.</li>
 <p>Objective-C: </p>
 <pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">start</span><span class="p">];</span>
 </code></pre>
-<a href='#5_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='5_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions'>5. Caffeine defaults to off, so no traffic will be accelerated until specific URLs or sets of URLs are specified. This is done through CaffeineHTTPProxy’s allow and deny functions.</h3>
+<a href='#6_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='6_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions'>6. Caffeine defaults to off, so no traffic will be accelerated until specific URLs or sets of URLs are specified. This is done through CaffeineHTTPProxy’s allow and deny functions.</h3>
 
 <p>Swift: </p>
 <pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="err">“</span><span class="nv">http</span><span class="p">:</span><span class="c1">//google.com”)</span>
@@ -163,7 +178,7 @@ Caffeine technology is engineered tightly to this network speed limit. The resul
 <a href='#more_technical_information' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='more_technical_information'>More technical information</h2>
 
 <p>A report of Caffeine&rsquo;s effect on image downloading may be found <a href="./MIDWriteup.pdf">here</a></p>
-<a href='#closing_remarks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='closing_remarks'>Closing Remarks</h1>
+<a href='#closing_remarks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='closing_remarks'>Closing Remarks</h2>
 
 <p>It is after more than a year of meticulous engineering and testing that we feel comfortable inviting organizations to work with us. We take great pride in our technology, and it&rsquo;s essential to us that it pushes your applications forward. </p>
 
@@ -176,7 +191,7 @@ Caffeine technology is engineered tightly to this network speed limit. The resul
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-21)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
