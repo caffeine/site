@@ -12,4 +12,16 @@ $(document).ready(function(){
       data: $this.serialize()
     })
   })
+
+  $('.hide-placeholder-on-focus').on('focus', function(){
+    $this = $(this)
+    placeholder = $this.attr('placeholder')
+    $this.data('placeholder', placeholder)
+    $this.attr('placeholder', '')
+  }).on('blur', function(){
+    $this = $(this)
+    placeholder = $this.data('placeholder')
+    $this.attr('placeholder', placeholder)
+  })
 });
+
