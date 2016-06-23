@@ -80,11 +80,13 @@
     color: #FFF;
     }
     </style>
+    <link href="stylesheets/additional.css" media="screen" rel="stylesheet">
     <script type="text/javascript">
     var pathString = "/enterprise";
     window.onConsolePage = pathString.indexOf("console") > -1;
     window.onTeamsPage = pathString.indexOf("teams") > -1;
     </script>
+    <script src="js/additional.js" type="text/javascript"></script>
 </head>
 <body class="no-js">
     <a id="top" name="top"></a>
@@ -168,13 +170,11 @@
                             The fastest networking stack for iOS. Accelerate your business today with the next generation of networking technology.
                         </div><br>
                         <div class="center" style="padding-top: 4em">
-                            <a href="mailto:help@caffei.net"><input class=
-                            "hollow blue" name="submit" style=
-                            "margin:auto; width:14em;" type="submit" value=
-                            "Request a Demo"></a><br>
-                            <br>
-                            <div id="errorMessage"></div>
-                            </div>
+                            <form id='enterprise-contact-form' action="https://formspree.io/epbarger@gmail.com" method="POST">
+                                <input autocomplete="off" type="email" name="emailAddress" id="email-address" class="email-field hollow" id="exampleInputEmail1" placeholder="youremail@domain.com"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'youremail@domain.com'" >
+                                <input class="hollow blue" name="submit" style="margin:auto; width:14em;" type="submit" value="Request a Demo">
+                            </form>
                         </div>
                     </div>
                 </div>

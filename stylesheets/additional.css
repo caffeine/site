@@ -1,0 +1,15 @@
+input.email-field.hollow {
+  margin: 0 auto 20px;
+  max-width: 26em;
+  cursor: inherit;
+  border-radius: 10px;
+  border-color: rgb(198, 198, 198);
+}
+
+input.email-field:invalid {
+  border-color: rgb(233, 87, 87);
+}
+
+input.email-field:disabled {
+  opacity: 0.7;
+}
