@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (85% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/CaffeineHTTPProxy.html">CaffeineHTTPProxy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSURLSessionConfiguration.html">NSURLSessionConfiguration</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+           
+<a href='#integration_getting_started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='integration_getting_started'>Steps for A/B Testing Caffeine</h1>
+
+<p>Applying Caffeine to a percentage of user-sessions is supported. Because of a desire to change this percentage without submitting an update to the app store, this percentage value lives on a remote file that we control. The default value is 100%, so assuming a request is <a href="./Classes/CaffeineHTTPProxy.html#/s:ZFC8Proxeine17CaffeineHTTPProxy5allowFSST_">allowed</a> and your license file is valid it will flow through Caffeine. <br /> To change this percentage, please email our engineers at help@caffei.net</p>
+
+<a href='#steps_to_integrate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='steps_to_integrate'>Determining whether Caffeine is enabled on the current session</h2>
+
+<p>Upon the start of every session, a notification whose name is stored as <code><a href="./Classes/CaffeineHTTPProxy.html#/s:ZvC8Proxeine17CaffeineHTTPProxy40caffeineInformationStringNotificationKeySS">CaffeineHTTPProxy.caffeineInformationStringNotificationKey</a></code>
+
+is posted to the default notification center. Within the notification's userInfo is a boolean value keyed by the same string-value as the notification name (right above) indicating whether or not Caffeine is enabled for the current session.
+
+<a href='#steps_to_integrate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='steps_to_integrate'>An Example AppDelegate</h2>
+
+
+
+ <pre class="highlight swift"><code><span class="kt">
+import UIKit
+import Proxeine
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        CaffeineHTTPProxy.allow("http://google.com/*")
+        CaffeineHTTPProxy.start()
+        
+        
+        // Start listening for the Caffeine notification 
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.receivedCaffeineNotification(_:)), name: CaffeineHTTPProxy.caffeineInformationStringNotificationKey, object: nil)
+        return true
+    }
+    
+    
+    // Our method to receive the Caffeine notification
+    // Called after downloading the percentage value from a remote server
+
+    func receivedCaffeineNotification(aNotification: NSNotification) {
+        if aNotification.name == CaffeineHTTPProxy.caffeineInformationStringNotificationKey {
+            if let usingCaffeine = aNotification.userInfo?[CaffeineHTTPProxy.caffeineInformationStringNotificationKey] as? Bool {
+                // 'usingCaffeine` now tracks whether Caffeine is enabled for this SESSION
+                // Log this value to your 3rd party analytics service
+            }
+        }
+    }
+}
+
+</span>
+</code></pre>
+
+
+<p>Your method for receiving the <code>NSNotification</code> can of course be anywhere in your project, but we strongly recommend adding the observer from within <code>application:didFinishLaunchingWithOptions:</code><p>If at any time you require help, please contact our engineers at <a href="mailto:help@caffei.net">help@caffei.net</a>. They're more than happy to help!</p></p>
+<ul>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
