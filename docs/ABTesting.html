@@ -102,8 +102,19 @@ is posted to the default notification center. Within the notification's userInfo
 </code></pre>
 
 
-<p>Your method for receiving the <code>Notification</code> can of course be anywhere in your project, but we strongly recommend adding the observer from within <code>application:didFinishLaunchingWithOptions:</code><p>If at any time you require help, please contact our engineers at <a href="mailto:help@caffei.net">help@caffei.net</a>. They're more than happy to help!</p></p>
+
+
+<p>Your method for receiving the <code>Notification</code> can of course be anywhere in your project, but we strongly recommend adding the observer from within <code>application:didFinishLaunchingWithOptions:</code></p>
 <ul>
+
+  <a href='#steps_to_integrate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='steps_to_integrate'>Determining whether Caffeine is enabled for a specific request</h2>
+
+  <p>For requests that go through Caffeine, the key value header <code>X-Caffeine-State:caffeine</code> will exist in the response. For requests that don't go through Caffeine, either no header will be present or the key value header <code>X-Caffeine-State:decaf</code> will be. 
+
+</p>
+
+<p>If at any time you require help, please contact our engineers at <a href="mailto:help@caffei.net">help@caffei.net</a>. They're more than happy to help!</p>
+
           </section>
         </section>
         <section id="footer">
