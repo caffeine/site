@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/jameswilliamgraham/ProxyClient/Caproxient/Proxeine/CaffeineHTTPProxy.swift",
+      "line": 337,
+      "symbol": "CaffeineHTTPProxy.start(debug:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/jameswilliamgraham/ProxyClient/Caproxient"
+}
