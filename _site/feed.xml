@@ -3,8 +3,8 @@
   <channel>
     <title>Caffeine</title>
     <description>Caffeine cuts all the fat out of iOS content loading</description>
-    <link>http://wittedhaddock.github.io</link>
-    <atom:link href="http://wittedhaddock.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://caffei.net</link>
+    <atom:link href="http://caffei.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>How Does Caffeine work?</title>
@@ -13,8 +13,8 @@
           How does Caffeine work? Caffeine makes hundreds of small optimizations all over the place to provide consistent performance improvements for iOS applications. A few of these places include the kernel buffer, the 3-way handshake, and transport level. (Please note that we do not make any changes to your payload. Data...
         </description>
         <pubDate>Sat, 01 Oct 2016 00:00:00 -0700</pubDate>
-        <link>http://wittedhaddock.github.io/2016-10-01-how-does-Caffeine-work/</link>
-        <guid isPermaLink="true">http://wittedhaddock.github.io/2016-10-01-how-does-Caffeine-work/</guid>
+        <link>http://caffei.net/2016-10-01-how-does-Caffeine-work/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-10-01-how-does-Caffeine-work/</guid>
       </item>
     
   </channel>
