@@ -489,3 +489,8 @@ h1#pricing-header {
   font-weight: 400;
 }
 
+#benefits-section #img-description {
+  margin: 0;
+  font-size: 13px;
+}
+
