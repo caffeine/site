@@ -85,8 +85,8 @@ section {
   background-position: 100% 0%;
   background-size: contain;*/
 
-  background: url("/img/bg8.jpg") no-repeat 85% 70px, linear-gradient( to right, rgba(0,0,0,0.0), white 55%);
-  background-size: contain, contain;
+  background: url("/img/MID.gif") no-repeat 85% 70px, linear-gradient( to right, rgba(0,0,0,0.0), white 55%);
+  background-size: 40% auto;
   background-position: right;
 }
 
