@@ -340,7 +340,7 @@ h1#pricing-header {
 }
 
 #plans-summaries-premium .btn {
-  margin-top: 6.7em;
+  margin-top: 4.7em;
   background-color: #E7B158;
   border-color: #E7B158;
   color: white;
@@ -362,7 +362,7 @@ h1#pricing-header {
   margin-top: 150px;
 }
 
-#pricing-tiers .col-lg-5 {
+#pricing-tiers .col-lg-4 {
   background-color: white;
   border-radius: 10px;
   border-color: gray;
