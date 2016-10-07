@@ -84,9 +84,9 @@ section {
   background-repeat: no-repeat;
   background-position: 100% 0%;
   background-size: contain;*/
-
+  height: 300px;
   background: url("/img/MID.gif") no-repeat 85% 70px;
-  background-size: 40% auto;
+  background-size: 80% auto;
   background-position: right;
 }
 
