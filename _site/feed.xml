@@ -10,7 +10,7 @@
         <title>How Does Caffeine work?</title>
         <description>
           
-          How does Caffeine work? Caffeine makes hundreds of small optimizations all over the place to provide consistent performance improvements for iOS applications. A few of these places include the kernel buffer, the 3-way handshake, and transport level. (Please note that we do not make any changes to your payload. Data...
+          How does Caffeine work? Caffeine is a new internet protocol for app network traffic. We&#39;ve taken HTTP, TLS, and TCP, and re-engineered them into a tightly integrated and faster networking stack. We send the same data you do today, just with less overhead. So if you&#39;re already doing compression and...
         </description>
         <pubDate>Sat, 01 Oct 2016 00:00:00 -0700</pubDate>
         <link>http://caffei.net/2016-10-01-how-does-Caffeine-work/</link>

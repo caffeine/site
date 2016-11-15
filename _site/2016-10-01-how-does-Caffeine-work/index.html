@@ -61,7 +61,7 @@
   <meta name="twitter:site" content="@" />
   <meta name="twitter:creator" content="@" />
   <meta name="twitter:title" content="How Does Caffeine work?" />
-  <meta name="twitter:description" content="How does Caffeine work? Caffeine makes hundreds of small optimizations all over the place to provide consistent performance improvements for iOS applications. A few of these places include the kernel buffer, the 3-way handshake, and transport level. (Please note that we do not make any changes to your payload. Data..." />
+  <meta name="twitter:description" content="How does Caffeine work? Caffeine is a new internet protocol for app network traffic. We&#39;ve taken HTTP, TLS, and TCP, and re-engineered them into a tightly integrated and faster networking stack. We send the same data you do today, just with less overhead. So if you&#39;re already doing compression and..." />
   
   <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
   
@@ -184,10 +184,18 @@
         <header>
 
       <h1> How does Caffeine work? </h1>
-      <p>Caffeine makes hundreds of small optimizations all over the place to provide consistent performance improvements for iOS applications. A few of these places include the kernel buffer, the 3-way handshake, and transport level. (Please note that we do not make <i>any</i> changes to your payload. Data compression, a popular performance technique, can open up <a href="https://en.wikipedia.org/wiki/CRIME">new attack vectors</a> in your app, so we strongly caution our customers to stay away from these approaches.) </p>
+<p>Caffeine is a new internet protocol for app network traffic. We've taken HTTP, TLS, and TCP, and re-engineered them into a tightly integrated and faster networking stack.
+<br />
+<br />
+We send the same data you do today, just with less overhead. So if you're already doing compression and image size reduction, our technology can take you beyond the best practices.
+<br />
+<br />
+Internet protocols don't innovate because they need interoperability with Netscape Navigator. But if your app is talking to your backend, you don't have to choose a legacy protocol. You can choose one that delivers a better experience for your users.
+<br />
+<br />
+Our tooling provides seamless translation between Caffeine and legacy protocols, so your existing network code is just a 15-minute upgrade, and you can adopt Caffeine when and where it makes the most sense for your users.</p>
         <hr />
 
-        <p> Caffeine's approach to iOS networking is driven by data. We spent years collecting performance data from apps in the real world on real networks. Many of our findings uncovered contradictions to formerly held theories and uncovered design patterns deep within iOS. Caffeine vertically integrates a lot of different "parts" of iOS networking so that we can hard-code many assumptions into lower-levels that represent actual top-level user experience truths. Caffeine cuts out the fat.</p>
     </header>
 
 
@@ -232,42 +240,31 @@
 
     <div id="diagram-explanation">
     <p> <br />
-      In traditional networked software, the boundary between each protocol layer incurs a sizeable overhead. The data from the previous layer must be massaged into a format appropriate for consumption for the next layer. This overhead serves no practical purpose other than to satisfy two different libraries written in two languages that chose incompatible APIs in different decades. <br />
-      These are some of the many sources of performance problems arising from one layer of the network stack not knowing what the other layer is doing.
-      <br />
-      <br />
-      Caffeine, in contrast, leverages techniques that have been known for years in real-time audio processing, allowing data to flow through long signal chains in real-time and with low overhead. Caffeine is a single, vertically integrated solution that streamlines these redundancies to solve the problem in one place.
-      <br />
-      <br />
-      As a vertically integrated solution, Caffeine has access to a “semantically-complete” application request for its entire lifetime. This access allows calculating, and not guessing, when future requests will leave/arrive. With this insight, many subtle optimizations were built into Caffeine’s design.
+Legacy protocols were designed by committee over many decades to handle all the usecases on the internet: dial-up, broadband, and cellular. VoIP, broadcast, and web. LAN, datacenter, and WAN. IE, Chrome, and FireFox. So many usecases force these protocols to be a jack of all trades, but a master of none.
+<br />
+<br />
+Caffeine is a vertically integrated protocol, narrowly focused on app developers. We cut away the legacy that app developers don't use, and we eliminate the redundancies between protocol layers that were designed separately years ago. We add techniques known for years in real-time audio processing and high-frequency trading to move data faster.
+<br />
+<br />
+The result is a streamlined protocol where no byte is wasted. And a fresher and more engaging experience for your users.
 
 </p>
 </div>
 
      
-      <h2>Network security is poor and costly for apps.</h2>
-      <p class="subtitle">As it happens, our issues with the state of network security spurred the design of Caffeine. Its fast performance was an accident. </p>
-        <h3> The costs of network security today: </h3>
-
-    <div class="col-lg-4" id="plans-summaries-free">
-      <div class="inner">
-        <h4> 1. Greater network security <i>causes</i> lesser performance </h4>
-        <p> HTTPS is slower than HTTP: a well-known truth in application-development communities. This creates the unfortunate reality that applications often have to <i>choose</i> between security and performance. Because a faster app equates to more dollars, apps will typically choose performance over security, using HTTPS as sparingly as possible.</p>
-      </div>
-    </div>
-     <div class="col-lg-4" id="plans-summaries-free">
-      <div class="inner">
-        <h4> 2. App network security relies on decades old technology that isn't actually that secure and breaks often</h4>
-        <p> HTTPS was built for the browser, not mobile apps. So its attack surface area, for example, is unnecessarily huge for your app.</p>
-      </div>
-    </div>
-    <div class="col-lg-4" id="plans-summaries-free">
-      <div class="inner">
-        <h4> 3. Integrating network security into an app is not a task for app-developers</h4>
-        <p> App developers should spend their time writing user-features, not understanding low-level network security. Given the arcane complexity of HTTPS configurations, it's incredibly easy to screw up an installation too and this happens all the time. Easily made human errors here lead to huge security flaws in applications. </p>
-      </div>
-  </div>
+      <h2>Security</h2>
+      <p>
+Apps are faced with an unfortunate choice: do I use HTTPS to keep my data secure, or do I use plaintext for superior performance?
+<br />
+<br />
+Caffeine provides strong security without the performance cost. Based on the trusted security technology of NaCl, Caffeine provides all the guarantees of traditional HTTPS traffic, and quite a few more – like PFS, and certificate pinning – out of the box, without the performance overhead.
+</p>
 </div>
+
+<div class="text-center">
+<a href="/customers" class="btn btn-warning btn-lg btn-sidepadding">Show me who is using Caffeine</a>
+</div>
+<br />
 <!--   <h4> Caffeine is loved by these fine companies...</h4>
   <div class="text-center">
     <img src="/img/logoboard.png" />
