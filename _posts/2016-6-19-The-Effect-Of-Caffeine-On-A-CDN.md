@@ -204,3 +204,7 @@ These improvements appear largely independent and therefore additive.  Customers
 We believe that custom protocol engineering is an important tool in the overall performance portfolio, particularly for mobile customers, which are a large and growing segment.  Our protocols work alongside and enhance traditional performance strategies, like POP deployments or TLS tuning to provide a combined customer solution.  But they also provide new ways of thinking about performance that don't have traditional drawbacks.  Savvy partners should use an all-of-the-above performance strategy and lean on the strengths of each technology wherever those technologies work best to provide the best experience for their customers.
 
 We think all of these results are quite encouraging, particularly given that our current technology is not well-optimized for the CDN case, and these results suggest to us that further improvement and optimization is possible.
+
+<div class='text-center'>
+<a href='/sign-up/' class='btn btn-warning btn-lg btn-sidepadding'>Try Caffeine For Free</a>
+</div>
