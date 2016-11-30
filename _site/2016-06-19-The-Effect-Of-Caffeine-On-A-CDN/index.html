@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Caffeine's Effect on a CDN-Hosted Image</title>
+
+  <meta name="author" content="Caffeine Computing Inc." />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Caffeine - Caffeine cuts all the fat out of iOS content loading" href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/custom.css"/>
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Caffeine's Effect on a CDN-Hosted Image" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/" />
+  
+  
+  <meta property="og:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+  <meta name="twitter:title" content="Caffeine's Effect on a CDN-Hosted Image" />
+  <meta name="twitter:description" content="The Effect of Caffeine on a CDN’s image We show that delivering an image from Washington D.C. to Austin, TX using Caffeine (1523.8 miles) is far faster than delivering an image from Dallas to Austin using HTTPS (195.1 miles) on a 3G connection. This experiment measures the use of Fastly..." />
+  
+  <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="navbar-image" src="/img/avatar-icon.png" />
+      <a class="navbar-brand" href="http://caffei.net">Caffeine</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav-buttons navbar-left">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/blog">Blog</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/pricing">Pricing</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/benefits">Benefits</a>
+
+          </li>
+        
+         
+      </ul>
+      <ul class="nav-buttons navbar-right">
+      
+
+        <li >
+          <a href='/sign-up/' class='btn btn-warning btn-lg'>Learn More</a>
+        </li>
+        <li >
+          <a href='/contact-us' class='btn btn-default btn-lg'>Contact Us</a>
+        </li>
+
+      </ul>
+    </div>
+
+<!-- 	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://caffei.net ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	 -->
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="/images/cdn-big-img.jpg"
+		
+	  
+    
+  ></div>
+
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Caffeine's Effect on a CDN-Hosted Image</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on June 19, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
+
+
+</header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h1 id="the-effect-of-caffeine-on-a-cdns-image">The Effect of Caffeine on a CDN’s image</h1>
+
+<p>We show that delivering an image from Washington D.C. to Austin, TX using Caffeine (1523.8 miles) is far faster than delivering an image from Dallas to Austin using HTTPS (195.1 miles) on a 3G connection. This experiment measures the use of Fastly and Caffeine together and separately while comparing against Akamai.</p>
+
+<h1 id="key-conclusions">Key Conclusions</h1>
+
+<ul>
+  <li>On top of Fastly, Caffeine provides an additional 45% average improvement to customer traffic latency</li>
+  <li>Caffeine and Fastly together unlock a combined 57% average improvement to customer traffic latency</li>
+  <li>Fastly alone provides a 20% average improvement to customer traffic latency, whether or not Caffeine is used.</li>
+  <li>These figures are for a residential WiFi connection.  Caffeine unlocks additional performance on cellular networks.</li>
+  <li>Caffeine significantly closes Fastly’s performance gap with Akamai on mobile</li>
+</ul>
+
+<h1 id="experimental-design">Experimental Design</h1>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>We set up the network architecture to perform our experiment.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Node</th>
+      <th>Location</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Client</td>
+      <td>Austin, TX</td>
+      <td>Central US location</td>
+    </tr>
+    <tr>
+      <td>Fastly POP A</td>
+      <td>Chicago, IL</td>
+      <td>Fastly-nominated POP from our client</td>
+    </tr>
+    <tr>
+      <td>Caffeine proxy server</td>
+      <td>Washington, DC</td>
+      <td>Existing production server for a customer deployment for AWS East</td>
+    </tr>
+    <tr>
+      <td>Fastly POP B</td>
+      <td>Ashburn, VA</td>
+      <td>Fastly-selected POP for our proxy server</td>
+    </tr>
+    <tr>
+      <td>S3-East POP</td>
+      <td>Ashburn, VA</td>
+      <td>S3 East location</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/images/caffeine-diagram.png" alt="caffeine-diagram" /></p>
+
+<h2 id="client-configuration">Client configuration</h2>
+
+<p>We placed a client on a residential WiFi connection in Austin, TX.  Its characteristics were measured and results recorded to the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>characteristic</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>download speed</td>
+      <td>156mbit/s</td>
+    </tr>
+    <tr>
+      <td>upload speed</td>
+      <td>20mbit/s</td>
+    </tr>
+    <tr>
+      <td>Fastly POP</td>
+      <td>151.101.44.230</td>
+    </tr>
+    <tr>
+      <td>avg. Fastly ping</td>
+      <td>51ms</td>
+    </tr>
+    <tr>
+      <td>stdev Fastly ping</td>
+      <td>14ms</td>
+    </tr>
+    <tr>
+      <td>S3-East POP</td>
+      <td>54.231.32.99</td>
+    </tr>
+    <tr>
+      <td>avg S3-East ping</td>
+      <td>62ms</td>
+    </tr>
+    <tr>
+      <td>stdev S3-EAST ping</td>
+      <td>11ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="proxy-configuration">Proxy configuration</h2>
+
+<p>We measured our Caffeine proxy server and its characteristics are recorded in the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>characteristic</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>download speed</td>
+      <td>399mbit/s</td>
+    </tr>
+    <tr>
+      <td>upload speed</td>
+      <td>781mbit/s</td>
+    </tr>
+    <tr>
+      <td>Fastly POP</td>
+      <td>151.101.32.230</td>
+    </tr>
+    <tr>
+      <td>avg. Fastly ping</td>
+      <td>2.2ms</td>
+    </tr>
+    <tr>
+      <td>stdev Fastly ping</td>
+      <td>.068ms</td>
+    </tr>
+    <tr>
+      <td>S3-East POP</td>
+      <td>54.231.98.144</td>
+    </tr>
+    <tr>
+      <td>avg S3-East ping</td>
+      <td>2.5ms</td>
+    </tr>
+    <tr>
+      <td>stdev S3-EAST ping</td>
+      <td>.065ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ios-application">iOS application</h2>
+
+<p>We designed an iOS application to benchmark fetching a resource used by an actual Fastly customer.  The resource was selected by examining a Fastly customer application to select a format (image) and size (62kb) to be fairly typical of mobile application traffic.  The URL of the resource we chose was: <code class="highlighter-rouge">https://secure.img1.wfrcdn.com/lf/205/hash/0/29643030/1/Top+Tools+for+Party-Starting+Treats.jpg</code>.  The domain in this URL is a Fastly customer’s alias for the Fastly CDN.</p>
+
+<p>The following is standard benchmarking code for loading an image on iOS.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//avoid client-side caching</span>
+<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">NSURLSessionConfiguration</span><span class="o">.</span><span class="nf">ephemeralSessionConfiguration</span><span class="p">()</span>
+
+<span class="n">config</span><span class="o">.</span><span class="nf">addCaffeine</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">NSURLSession</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">NSMutableURLRequest</span><span class="p">(</span><span class="kt">URL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://secure.img1.wfrcdn.com/lf/205/hash/0/29643030/1/Top+Tools+for+Party-Starting+Treats.jpg"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="c1">//or use instead for S3 origin</span>
+<span class="c1">//let request = NSMutableURLRequest(URL: NSURL(string: "https://proxeine.s3.amazonaws.com/Top%2BTools%2Bfor%2BParty-Starting%2BTreats.jpg")!)</span>
+
+<span class="n">request</span><span class="o">.</span><span class="kt">HTTPMethod</span> <span class="o">=</span> <span class="s">"GET"</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">100</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">stop</span> <span class="o">=</span> <span class="nf">dispatch_semaphore_create</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">then</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="kt">NSDate</span><span class="p">()</span><span class="o">.</span><span class="nf">timeIntervalSinceDate</span><span class="p">(</span><span class="n">then</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="nf">dispatch_semaphore_signal</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
+        <span class="p">}</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+    <span class="nf">dispatch_semaphore_wait</span><span class="p">(</span><span class="n">stop</span><span class="p">,</span> <span class="kt">DISPATCH_TIME_FOREVER</span><span class="p">)</span>
+    <span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"done"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Additionally, the following two lines of code enable Caffeine acceleration:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="s">"h*"</span><span class="p">)</span> <span class="c1">//proxy all HTTP/HTTPS traffic</span>
+</code></pre>
+</div>
+
+<p>When enabled, Caffeine intercepts network traffic inside the iOS operating system and routes that traffic to a Caffeine server located in the Washington, DC area.  Our server terminates the client connection and makes standard HTTP/HTTPS outbound requests to S3 and/or Fastly.</p>
+
+<p>No caching is performed by any of our components (client or proxy server).  All requests fly out to S3 or Fastly origins.  We assume that Fastly caches customer data at its POP locations.</p>
+
+<h1 id="results">Results</h1>
+
+<h2 id="s3-origin-vs-fastly">S3 Origin vs Fastly</h2>
+
+<p>We first compared the S3 Origin against Fastly, without using Caffeine technology.  We expect Fastly to be faster than our S3 origin, and this result helps validate our experimental design.</p>
+
+<p><img src="/images/s3-Fastly.png" alt="s3-Fastly" /></p>
+
+<p>We find that Fastly improves performance with statistical significance, <code class="highlighter-rouge">p=1*10^-14</code>.  The improvement from Fastly is between 54ms and 162ms with 95% confidence.</p>
+
+<p>Fastly reduces request times by an average of 108ms, an improvement of 20%.</p>
+
+<h2 id="fastly-alone-vs-fastly-with-caffeine">Fastly alone vs Fastly with Caffeine</h2>
+
+<p>We then added Caffeine technology to Fastly requests to measure any improvement.</p>
+
+<p><img src="/images/Caffeine-Fastly.png" alt="Caffeine-Fastly" /></p>
+
+<p>We find that Caffeine improves Fastly performance with statistical significance, <code class="highlighter-rouge">p=2*10^-30</code>.  The improvement from Caffeine is between 144ms and 240ms with 95% confidence.</p>
+
+<p>Caffeine reduces Fastly request times by 193ms, an improvement of 45%.</p>
+
+<h2 id="g-performance">3G Performance</h2>
+
+<p>Mobile customers are often mobile.  This places them on cellular networks that are crowded, have interference, and are otherwise much less well-behaved than residential WiFi or fiber-class networks.  More and more internet users are mobile, with many of them in developing countries where networks behave more unpredictably.  While bad networks always represent <em>some</em> performance degradation, Caffeine aggressively targets these cases and can often provide good user experiences in very bad environments.</p>
+
+<p>We re-ran the above benchmark on a 3G network to see the effect in a poor customer environment.</p>
+
+<p><img src="/images/3G.png" alt="3G" /></p>
+
+<p>Caffeine improved Fastly performance on this network with statistical significance, <code class="highlighter-rouge">p=2*10^-34</code>.  The improvement from Caffeine is between 2.48s and 3.34s with 95% confidence.</p>
+
+<p>Caffeine reduces Fastly request times on a 3G network by 2.91s, an improvement of 72%.</p>
+
+<h2 id="better-together">Better Together</h2>
+
+<p>We then compared Caffeine technology with an S3 origin against Caffeine technology with a Fastly origin.  This quantifies the improvement Fastly contributes to a combined solution.</p>
+
+<p><img src="/images/BetterTogether.png" alt="BetterTogether" /></p>
+
+<p>We find Fastly improves Caffeine performance with statistical significance, <code class="highlighter-rouge">p=.0001</code>.  The improvement from Fastly is between 13ms and 98ms with 95% confidence.</p>
+
+<p>Fastly reduces Caffeine request times by 55ms, an improvement of 20%.  While this is in line with the 20% improvement from Fastly we measured earlier, we believe Fastly’s actual contribution to performance in this configuration is higher due to a limitation in our experimental design discussed below.</p>
+
+<h2 id="a-prospective-customers-perspective">A prospective customer’s perspective</h2>
+
+<p>We studied a prospective customer evaluating both our offerings as a combined solution.</p>
+
+<p><img src="/images/Cumulative.png" alt="Cumulative" /></p>
+
+<p>We find our combined technologies improve S3 performance with statistical significance, <code class="highlighter-rouge">p=2*10^-34</code>.  The improvement from our combined technologies is between 273ms and 329ms with 95% confidence.</p>
+
+<p>Our combined technologies improve request performance by 301ms, an improvement of 57%.</p>
+
+<h2 id="comparison-with-akamai">Comparison with Akamai</h2>
+
+<p>After seeing these initial results, we decided to extend our experiment to cross-compare our results with industry leader Akamai’s CDN platform.  We reverse-engineered the NBC Sports iOS application, used (among other sporting events) to provide coverage for the 2014 and 2016 Olympics.  We used a 62KB image served by Akamai to that application to collect the Akamai results for this test.  URL: <code class="highlighter-rouge">https://hdliveextra-a.akamaihd.net/HD/image_sports/mobile/QfcI2BDLZJpTx0razVw0Pv6YbidnUTYj_m60.jpg</code></p>
+
+<p>Akamai has a node in Dallas, which provides a significant advantage to Akamai over the other scenarios in our test.  It is much faster to reach Akamai’s Dallas node (32ms) from our client  than either Fastly (51ms) or our Caffeine proxy server (61ms).  Nonetheless, we find the results intriguing.</p>
+
+<p><img src="/images/Akamai.png" alt="Akamai" /></p>
+
+<p>In this experiment, Akamai has a strong lead over Fastly, no doubt due to its closer point of presence.  But interestingly, Caffeine technology substantially narrows the performance gap, <em>even as it increases the total packet distance by nearly 8x</em>.  This suggests to us that Caffeine technology could help Fastly, or other CDNs, compete for mobile customers even without expanding their global footprints.</p>
+
+<p>We re-ran this test in a 3G environment to see what effect, if any, our aggressive “bad network” protocol optimizations might have for mobile customers in crowded network environments.  The result was stark:</p>
+
+<p><img src="/images/Akamai-3G.png" alt="Akamai-3G" /></p>
+
+<p>In this environment, Akamai’s relatively consistent performance has a healthy lead over Fastly’s much more variable performance.  But with the addition of Caffeine technology, the tables turn dramatically, placing Caffeine/Fastly performance in its own performance class.  This is true even though Caffeine packets must travel nearly 3x the distance of the Akamai ones.  These results are directly attributable to our mobile-focused protocol engineering, and demonstrate the power of a custom protocol approach.</p>
+
+<h1 id="limitations">Limitations</h1>
+
+<p>We recycled an existing production Caffeine proxy server for this experiment.  While this helps more accurately determine performance under realistic workloads, it also increases distance (and decreases measured performance) for the Caffeine+Fastly configuration.  Ideally, requests from Austin would reach a Caffeine proxy in Chicago and arrive at the “Fastly A POP” (see image from beginning).  Unfortunately, we don’t currently have a server presence in Chicago, so these requests took a detour through DC, reducing the performance we measured in the Caffeine+Fastly configuration below the performance we would be able to see in a larger deployment.</p>
+
+<p>Akamai’s Dallas location allows them a strong advantage over Fastly’s POP (Chicago) or our server (DC).  Nonetheless, we find the Akamai comparison compelling and it suggests several interesting opportunities for future tests.</p>
+
+<p>This experiment was performed at one client location and one proxy server location that were chosen arbitrarily from our existing deployments.  We have not tested other client and server locations with Fastly and so results in other geographies may vary.</p>
+
+<p>This experiment was performed with only 2 resources of 62kb size.  We think these resources are pretty typical for iOS traffic, but requests of other sizes may cause performance to vary.</p>
+
+<p>Due to a design detail of the Caffeine technology, the very first request made during an application session is slower than subsequent requests, by a factor of about 50%.  Results reported here are for subsequent requests, which are by far the majority (&gt;99.9%) of requests during an application session.</p>
+
+<h1 id="learnings">Learnings</h1>
+
+<p>In our experiments, the key contribution of Fastly, or CDNS at large, is moving the content close to the client in an edge blade architecture.</p>
+
+<p>Caffeine accelerates both the upload and the download, which is certainly important to native mobile apps (they often have more uploads than they do downloads!). This feature was not discussed in this report, however, because there is no equivalent feature on CDNs.</p>
+
+<p>The key contribution of Caffeine discussed in this write-up is improving the efficiency of the inevitable last-mile through aggressive protocol optimizations. Our results show we achieve large relative improvements over both enterprise-grade general-purpose HTTPS stacks (AWS) and highly performance-tuned stacks (Fastly, Akamai). This demonstrates that even the best HTTPS performance tuning cannot compete with very aggressive custom protocol design.</p>
+
+<p>These improvements appear largely independent and therefore additive.  Customers benefit best from using both technologies, not from using either one separately.</p>
+
+<p>We believe that custom protocol engineering is an important tool in the overall performance portfolio, particularly for mobile customers, which are a large and growing segment.  Our protocols work alongside and enhance traditional performance strategies, like POP deployments or TLS tuning to provide a combined customer solution.  But they also provide new ways of thinking about performance that don’t have traditional drawbacks.  Savvy partners should use an all-of-the-above performance strategy and lean on the strengths of each technology wherever those technologies work best to provide the best experience for their customers.</p>
+
+<p>We think all of these results are quite encouraging, particularly given that our current technology is not well-optimized for the CDN case, and these results suggest to us that further improvement and optimization is possible.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+            engineering, CDN, image-delivery
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Google Plus -->
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+</section>
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        
+        <li class="next">
+          <a href="/2016-10-01-how-does-Caffeine-work/" data-toggle="tooltip" data-placement="top" title="How Does Caffeine work?">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-3">
+              <span class="footer-header">Getting Started</span>
+      <ul>
+      <li>
+        <a href="/sign-up" title="Documentation">
+              <span class="">
+                Learn More/Get Our Whitepaper
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Xcode Integration
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Documentation
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        <div class="col-lg-3">
+                  <span class="footer-header">What we do</span>
+
+      <ul>
+        
+      <li>
+        <a href="/benefits">
+              <span class="">
+                Caffeine Benefits
+              </span>
+            </a>
+          </li>
+      <li>
+        <a href="/pricing">
+              <span class="">
+                Plans/Pricing
+              </span>
+            </a>
+          </li>
+          <li>
+        <a href="/2016-10-01-how-does-Caffeine-work/">
+              <span class="">
+                How Does Caffeine Work?
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+              <span class="footer-header">Community</span>
+      <ul>
+      <li>
+        <a href="/customers" title="Documentation">
+              <span class="">
+              Case Studies
+              </span>
+            </a>
+          </li>
+          <li>
+       <li>
+            <a href="/blog" title="Documentation">
+              <span class="">
+                Blog
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/videos" title="Videos">
+              <span class="">
+                Videos
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3">
+              <span class="footer-header">About Us</span>
+      <ul>
+        
+          <li>
+            <a href="/about-us" title="Documentation">
+              <span class="">
+                About
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="/terms-of-service" title="Documentation">
+              <span class="">
+                Terms of Service
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/privacy" title="Documentation">
+              <span class="">
+                Privacy Policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          <p style="font-size: 20px">We believe you can build a great application!<p>
+          
+          
+		  
+		  
+          <li>
+            <a href="mailto:help@caffei.net" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  
+      
+      
+		  
+           
+        </ul>
+
+        <p class="copyright text-muted">
+		  Caffeine Computing Inc.
+		  &nbsp;&bull;&nbsp;
+		  2016
+
+		  
+	    </p>
+	        
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-76795314-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+
+  
+  </body>
+</html>

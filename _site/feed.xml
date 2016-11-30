@@ -17,5 +17,16 @@
         <guid isPermaLink="true">http://caffei.net/2016-10-01-how-does-Caffeine-work/</guid>
       </item>
     
+      <item>
+        <title>Caffeine&#39;s Effect on a CDN-Hosted Image</title>
+        <description>
+          
+          The Effect of Caffeine on a CDN’s image We show that delivering an image from Washington D.C. to Austin, TX using Caffeine (1523.8 miles) is far faster than delivering an image from Dallas to Austin using HTTPS (195.1 miles) on a 3G connection. This experiment measures the use of Fastly...
+        </description>
+        <pubDate>Sun, 19 Jun 2016 00:00:00 -0700</pubDate>
+        <link>http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/</guid>
+      </item>
+    
   </channel>
 </rss>
