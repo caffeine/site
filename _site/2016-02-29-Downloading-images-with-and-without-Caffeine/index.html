@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Analyzing download-times of images with and without Caffeine</title>
+
+  <meta name="author" content="Caffeine Computing Inc." />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Caffeine - Caffeine cuts all the fat out of iOS content loading" href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/custom.css"/>
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="Analyzing download-times of images with and without Caffeine" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/" />
+  
+  
+  <meta property="og:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+  <meta name="twitter:title" content="Analyzing download-times of images with and without Caffeine" />
+  <meta name="twitter:description" content="Caffeine reduces network latency in native iOS applications. (PDF) This document empirically discusses the following two items: The amount of latency reduced Characterization of latency reduction Abstract We collocate a server in Switzerland (to show extreme distance) and repeatedly download images from it using an iOS Simulator in Cambridge, MA...." />
+  
+  <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="navbar-image" src="/img/avatar-icon.png" />
+      <a class="navbar-brand" href="http://caffei.net">Caffeine</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav-buttons navbar-left">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/blog">Blog</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/pricing">Pricing</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/benefits">Benefits</a>
+
+          </li>
+        
+         
+      </ul>
+      <ul class="nav-buttons navbar-right">
+      
+
+        <li >
+          <a href='/sign-up/' class='btn btn-warning btn-lg'>Learn More</a>
+        </li>
+        <li >
+          <a href='/contact-us' class='btn btn-default btn-lg'>Contact Us</a>
+        </li>
+
+      </ul>
+    </div>
+
+<!-- 	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://caffei.net ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	 -->
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="/images/fasttrack.jpg"
+		
+	  
+    
+  ></div>
+
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Analyzing download-times of images with and without Caffeine</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 29, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
+
+
+</header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h2 id="caffeine-reduces-network-latency-in-native-ios-applications-pdfhttpwwwcaffeinetdocsmidwriteuppdf">Caffeine reduces network latency in native iOS applications. (<a href="http://www.caffei.net/docs/MIDWriteup.pdf">PDF</a>)</h2>
+
+<p>This document empirically discusses the following two items:</p>
+
+<ul>
+  <li>The amount of latency reduced</li>
+  <li>Characterization of latency reduction</li>
+</ul>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>We collocate a server in Switzerland (to show extreme distance) and repeatedly download images from it using an iOS Simulator in Cambridge, MA. In conducting downloads of a series of images, we find that fully encrypted Caffeine has 4.5x-8.5x greater throughput than HTTPS showing a just as great decrease in perceived network latency. We find Caffeine’s improvements over HTTPS to be consistent despite network congestion or otherwise adverse conditions (packet loss, lot of devices on the network, etc).</p>
+
+<h2 id="a-historical-experiment-consumer-technology-over-time">A Historical Experiment: Consumer Technology over Time</h2>
+
+<p>A webserver in Zurich, Switzerland contains twenty-four images of great achievement—from Edison’s 1877 cylinder phonograph to Musk’s SpaceX. These images total 1.615506MB. Smaller versions of these images are below.</p>
+
+<p><img src="/images/MID-image-table.png" alt="image-table" /></p>
+
+<p>These twenty-four images are downloaded from the server in Switzerland to an iOS simulator in Cambridge, Massachusetts consecutively from oldest to newest (1 to 24). The sizes in bytes of each individual image are below.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>106941</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>94482</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5257</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>95655</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>51468</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>5240</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>166199</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>15091</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>154009</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>38772</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>12932</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>65515</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>65486</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>78480</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>14703</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>73451</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>55605</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>55750</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>16722</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>13358</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>309497</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>42669</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>71259</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>6965</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To test HTTP/S downloads, we use the traditional NSURLSession provided by Apple’s Foundation Library.
+To test our alternative approach to mobile networking, we use Caffeine’s provided APIs.</p>
+
+<h2 id="testing-methodology">Testing Methodology</h2>
+
+<p>In attempt to scientifically evaluate the difference between Caffeine and HTTPS as it pertains to images, we took the following steps.
+Note: All data was collected from within the same 100-meter radius including no other smartphones/laptops. All tests were run on the Harvard University secure WiFi. The results in this study may be more dramatic than if the client and server were in the same country (U.S. to U.S. connection, e.g.).</p>
+
+<ol>
+  <li>In Cambridge, MA, start the client on an iPhone 6 simulator running iOS 9.2 from Xcode v7.2</li>
+  <li>In Zurich, Switzlerland start both backend servers (Caffeine and Apache) on OS X El Capitan 10.11.3 with 2.48 GHz processing power and 2GB DRAM.</li>
+  <li>Ping server in Switzerland (using ICMP) 100 times and record the following:
+  a. Average ping
+  b. Standard deviation of ping
+  c. Packet loss</li>
+  <li>Make an initial request for images from the client using Caffeine to remove TCPSlowstart.</li>
+  <li>Initiate Caffeine client requesting 24 images from Caffeine server 12 times with no greater than 1 second in between each of the 12 times.</li>
+  <li>Make an initial request for images from client using HTTPS to remove TCPSlowstart</li>
+  <li>Initiate NSURLSession requesting 24 images from Apache server 12 times with no greater than 1 second in between each of the 12 times.</li>
+  <li>Repeat steps 3-7 for a total of 10 times where the number of images requested is some different multiple of three (3, 6, 9, … 27, 30 – after 24 images, we reuse images from the beginning)</li>
+</ol>
+
+<h2 id="results">Results</h2>
+
+<p>For every 10 sets (each with an additional 3 images) of trials (12 for Caffeine, 12 for HTTPS), we have the following results.</p>
+
+<p><img src="/images/middata/g1.png" alt="g1" /></p>
+
+<p><img src="/images/middata/g2.png" alt="g2" /></p>
+
+<p><img src="/images/middata/g3.png" alt="g3" /></p>
+
+<p><img src="/images/middata/g4.png" alt="g4" /></p>
+
+<p><img src="/images/middata/g5.png" alt="g5" /></p>
+
+<p><img src="/images/middata/g6.png" alt="g6" /></p>
+
+<p><img src="/images/middata/g7.png" alt="g7" /></p>
+
+<p><img src="/images/middata/g8.png" alt="g8" /></p>
+
+<p><img src="/images/middata/g9.png" alt="g9" /></p>
+
+<p><img src="/images/middata/g10.png" alt="g10" /></p>
+
+<h3 id="a-cross-sectional-look-at-the-average-results">A cross-sectional look at the average results:</h3>
+
+<p><img src="/images/middata/average.png" alt="average" /></p>
+
+<h3 id="a-cross-sectional-look-at-the-median-results">A cross-sectional look at the median results:</h3>
+
+<p><img src="/images/middata/median.png" alt="median" /></p>
+
+<p>On average, Caffeine is anywhere from 400% - 850% faster than HTTPS. There are some anomalies in the data such as the 4th period in the median graph (above). This can be explained by waves of congestion on the network, or latency overseas. Across the board, the improvement gains of Caffeine over HTTPS remain relatively consistent.</p>
+
+<p>Because each period receives an additional 3 images, their total data size does not increase linearly like the total number of requests. For example, an additional 3 images fetched from the server always results in 3 additional requests, but the amount of total data for each of those requests is variable.</p>
+
+<p>To normalize this variation, we determine the average throughput (bytes/second).</p>
+
+<p><img src="/images/middata/throughput.png" alt="median" /></p>
+
+<p>This graph much more clearly displays the difference of Caffeine. It describes how much data can “fit through the pipe” per second. On the X-axis, the total number of requests increases by 3 periodically.</p>
+
+<p>In times of network stress or congestion, such as in the 3rd period above (9 requests), the performance of HTTPS prorates with the performance of Caffeine. This suggests that Caffeine’s performance relative to HTTPS remains consistent despite unpredictable networks phenomena (severe weather, congestion, miscellaneous latency).</p>
+
+<p>The percentage gain of Caffeine versus HTTPS is shown by the graph below.</p>
+
+<p><img src="/images/middata/percentage_gain.png" alt="median" /></p>
+
+<p>The minimum average multiplier improvement of Caffeine over HTTPS shown by this graph is ~450%, while the maximum is ~850%.</p>
+
+<h2 id="closing-remarks">Closing Remarks</h2>
+
+<p>When developing Caffeine, we continually asked what is actually necessary for iOS application networking environments. This approach has resulted in the reduction of a lot of (what turn out to be) unnecessary features/data in HTTP. The amount of bloat and latency incipient to HTTP continue to surprise us quite a lot.</p>
+
+<p>Forthcoming research include quantitative analyses of resource usage— determining how much bandwidth, CPU, battery-life would be saved in a Caffeinated environment.</p>
+
+<p>Caffeine is the fastest way and most secure solution to send data in iOS request-response architectures.</p>
+
+<div class="text-center">
+<a href="/customers" class="btn btn-warning btn-lg btn-sidepadding">Show me who is using Caffeine</a>
+</div>
+<p><br /></p>
+
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+            engineering, image-delivery
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Google Plus -->
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+</section>
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        
+        <li class="next">
+          <a href="/2016-04-04-LOWTIDE-Investigation/" data-toggle="tooltip" data-placement="top" title="A Performance Breakthrough on Small File Transfers">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-3">
+              <span class="footer-header">Getting Started</span>
+      <ul>
+      <li>
+        <a href="/sign-up" title="Documentation">
+              <span class="">
+                Learn More/Get Our Whitepaper
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Xcode Integration
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Documentation
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        <div class="col-lg-3">
+                  <span class="footer-header">What we do</span>
+
+      <ul>
+        
+      <li>
+        <a href="/benefits">
+              <span class="">
+                Caffeine Benefits
+              </span>
+            </a>
+          </li>
+      <li>
+        <a href="/pricing">
+              <span class="">
+                Plans/Pricing
+              </span>
+            </a>
+          </li>
+          <li>
+        <a href="/2016-10-01-how-does-Caffeine-work/">
+              <span class="">
+                How Does Caffeine Work?
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+              <span class="footer-header">Community</span>
+      <ul>
+      <li>
+        <a href="/customers" title="Documentation">
+              <span class="">
+              Case Studies
+              </span>
+            </a>
+          </li>
+          <li>
+       <li>
+            <a href="/blog" title="Documentation">
+              <span class="">
+                Blog
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/videos" title="Videos">
+              <span class="">
+                Videos
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3">
+              <span class="footer-header">About Us</span>
+      <ul>
+        
+          <li>
+            <a href="/about-us" title="Documentation">
+              <span class="">
+                About
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="/terms-of-service" title="Documentation">
+              <span class="">
+                Terms of Service
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/privacy" title="Documentation">
+              <span class="">
+                Privacy Policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          <p style="font-size: 20px">We believe you can build a great application!<p>
+          
+          
+		  
+		  
+          <li>
+            <a href="mailto:help@caffei.net" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  
+      
+      
+		  
+           
+        </ul>
+
+        <p class="copyright text-muted">
+		  Caffeine Computing Inc.
+		  &nbsp;&bull;&nbsp;
+		  2016
+
+		  
+	    </p>
+	        
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-76795314-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+
+  
+  </body>
+</html>

@@ -39,5 +39,16 @@
         <guid isPermaLink="true">http://caffei.net/2016-04-04-LOWTIDE-Investigation/</guid>
       </item>
     
+      <item>
+        <title>Analyzing download-times of images with and without Caffeine</title>
+        <description>
+          
+          Caffeine reduces network latency in native iOS applications. (PDF) This document empirically discusses the following two items: The amount of latency reduced Characterization of latency reduction Abstract We collocate a server in Switzerland (to show extreme distance) and repeatedly download images from it using an iOS Simulator in Cambridge, MA....
+        </description>
+        <pubDate>Mon, 29 Feb 2016 00:00:00 -0800</pubDate>
+        <link>http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-02-29-Downloading-images-with-and-without-Caffeine/</guid>
+      </item>
+    
   </channel>
 </rss>
