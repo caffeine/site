@@ -26,11 +26,11 @@ For response sizes less than 200kb (with <5ms backend latency), we knew that Caf
 
 ## A Closer Look
 
-We pulled out our lab tools and started looking into how we degrade over small requests. And the answer is: we don't. Or at least, not according to the tools. Here's what those experiments looked like: 
+We pulled out our lab tools and started looking into how we degrade over small requests. And the answer is: we didn't. Or at least, not according to the tools. Here's what those experiments looked like: 
 
 ![lowtide-first-experiment](/images/lowtide_first_experiment.png)
 
-What is seen here is... nothing. These two populations behave the same. None of the experiments we ran would show changes in performance for response size ranges between 200kb-400kb. Perhaps for response sizes that are MUCH more, as in "may not fit in your RAM" more, we can show something. But that wouldn't be seen here; that's not the problem we think may exist for <400kb.
+What is seen here is... nothing. These two populations behave the same. None of the experiments we ran would show changes in performance for response size ranges between 200kb-400kb. Perhaps for response sizes that are MUCH larger, as in "may not fit in your RAM" large, we can show something. But that wouldn't be seen here; that's not the problem we think may exist for <400kb.
 
 ...so we started wondering about our tooling.
 
@@ -105,7 +105,7 @@ class ViewController: NSViewController {
 }
 ```
 
-Then we would measure time across Nitrogen as seen from the client, playing with different request sizes, tweaking some internal values inside Nitrogen, any grasp for straws. Still nothing. Graph after graph after graph, identical populations:
+Then we would measure time across Nitrogen as seen from the client, played with different request sizes, tweaked some internal values inside Nitrogen, and looked for straws to grasp. Still nothing. Graph after graph after graph, identical populations:
 
 ![second-test](/images/lowtide_second_experiment.png)
 
@@ -113,8 +113,8 @@ So we started thinking more critically. We have a wireshark trace (not shown) an
 
 Through hours of trial and much error...
 
-1. The actual speedbump is inside the kernel. 
-2. Because of the special, kernely nature of this bug, it is ONLY reproducible on two machines.
+1. The actual speedbump was inside the kernel. 
+2. Because of the special, kernely nature of this bug, it was ONLY reproducible on two machines.
 	1. NOT in-process
 	2. NOT between two applications on the same computer
 	3. NOT between mac and simulator
