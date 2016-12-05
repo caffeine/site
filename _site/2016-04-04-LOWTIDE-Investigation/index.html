@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>A Performance Breakthrough on Small File Transfers</title>
+
+  <meta name="author" content="Caffeine Computing Inc." />
+  
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Caffeine - Caffeine cuts all the fat out of iOS content loading" href="/feed.xml" />
+
+  
+    
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+      
+  
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+    
+  
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+    
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/custom.css"/>
+
+  <!-- Facebook OpenGraph tags -->
+  <meta property="og:title" content="A Performance Breakthrough on Small File Transfers" />
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:url" content="http://caffei.net/2016-04-04-LOWTIDE-Investigation/" />
+  
+  
+  <meta property="og:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+  <meta name="twitter:title" content="A Performance Breakthrough on Small File Transfers" />
+  <meta name="twitter:description" content="A performance breakthrough on small file transfers (Codename: LOWTIDE) While testing Nitrogen, the protocol within Caffeine, using small files (&amp;lt;2mb) we discovered peculiar behavior that soon launched an investigation and a subsequent performance breakthrough. Internally, we had conflict. One team thought that Caffeine was going as fast as it could,..." />
+  
+  <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
+  
+  
+</head>
+
+
+  <body>
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="navbar-image" src="/img/avatar-icon.png" />
+      <a class="navbar-brand" href="http://caffei.net">Caffeine</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav-buttons navbar-left">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/blog">Blog</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/pricing">Pricing</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/benefits">Benefits</a>
+
+          </li>
+        
+         
+      </ul>
+      <ul class="nav-buttons navbar-right">
+      
+
+        <li >
+          <a href='/sign-up/' class='btn btn-warning btn-lg'>Learn More</a>
+        </li>
+        <li >
+          <a href='/contact-us' class='btn btn-default btn-lg'>Contact Us</a>
+        </li>
+
+      </ul>
+    </div>
+
+<!-- 	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://caffei.net ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	 -->
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="/images/edgerton_apple.jpg"
+		
+	  
+    
+  ></div>
+
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>A Performance Breakthrough on Small File Transfers</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on April 4, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
+
+
+</header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h1 id="a-performance-breakthrough-on-small-file-transfers">A performance breakthrough on small file transfers</h1>
+
+<h2 id="codename-lowtide">(Codename: LOWTIDE)</h2>
+
+<p>While testing Nitrogen, the protocol within Caffeine, using small files (&lt;2mb) we discovered peculiar behavior that soon launched an investigation and a subsequent performance breakthrough.</p>
+
+<p>Internally, we had conflict. One team thought that Caffeine was going as fast as it could, and another team wasn’t convinced and thought we had found a performance bug. In the end, a real performance bug did exist. As a result today, small file transfers move even faster than before through Caffeine.</p>
+
+<p>This entry details the discovery of this interesting and exciting performance bug.</p>
+
+<h2 id="peculiar-behavior">Peculiar Behavior</h2>
+
+<p>For response sizes less than 200kb (with &lt;5ms backend latency), we knew that Caffeine is roughly 1.5x-2x the ping time for the equivalent network conditions and client-server distance. While evaluating the performance effects of physical distance between client and server, requests of size 200kb-400kb were taking 2-4x the ping time.</p>
+
+<ul>
+  <li>Was Caffeine just not as fast on medium-sized file transfers?</li>
+  <li>What could explain this performance degradation?</li>
+</ul>
+
+<h2 id="a-closer-look">A Closer Look</h2>
+
+<p>We pulled out our lab tools and started looking into how we degrade over small requests. And the answer is: we don’t. Or at least, not according to the tools. Here’s what those experiments looked like:</p>
+
+<p><img src="/images/lowtide_first_experiment.png" alt="lowtide-first-experiment" /></p>
+
+<p>What is seen here is… nothing. These two populations behave the same. None of the experiments we ran would show changes in performance for response size ranges between 200kb-400kb. Perhaps for response sizes that are MUCH more, as in “may not fit in your RAM” more, we can show something. But that wouldn’t be seen here; that’s not the problem we think may exist for &lt;400kb.</p>
+
+<p>…so we started wondering about our tooling.</p>
+
+<h2 id="an-even-closer-look">An Even Closer Look</h2>
+
+<p>We put together sample Mac apps that closely replicated the same kind of requests we were making earlier.</p>
+
+<p>Client source code:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Cocoa</span>
+<span class="kd">import</span> <span class="kt">Nitrogen</span>
+
+<span class="k">let</span> <span class="nv">parameterAddress</span> <span class="o">=</span> <span class="s">"10.0.1.2"</span>
+<span class="k">let</span> <span class="nv">parameterPort</span><span class="p">:</span> <span class="kt">UInt16</span> <span class="o">=</span> <span class="mi">56663</span>
+
+<span class="k">let</span> <span class="nv">badBytes</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">](</span><span class="nv">count</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="nv">repeatedValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">NSViewController</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="k">let</span> <span class="nv">keyPath</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">()</span><span class="o">.</span><span class="nf">pathForResource</span><span class="p">(</span><span class="s">"insecureMIDKey"</span><span class="p">,</span> <span class="nv">ofType</span><span class="p">:</span> <span class="s">"key"</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">try!</span> <span class="kt">NSFileManager</span><span class="o">.</span><span class="nf">defaultManager</span><span class="p">()</span><span class="o">.</span><span class="nf">setAttributes</span><span class="p">([</span><span class="kt">NSFilePosixPermissions</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">(</span><span class="nv">short</span><span class="p">:</span> <span class="mi">0</span><span class="n">o0600</span><span class="p">)],</span> <span class="nv">ofItemAtPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">secretKey</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">N</span><span class="err">₂</span><span class="o">.</span><span class="kt">SecretKey</span><span class="p">(</span><span class="nv">readFromFile</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">N</span><span class="err">₂</span><span class="o">.</span><span class="kt">Client</span><span class="p">(</span><span class="nv">address</span><span class="p">:</span><span class="kt">Address</span><span class="p">(</span><span class="nv">printableAddress</span><span class="p">:</span> <span class="n">parameterAddress</span><span class="p">,</span> <span class="nv">port</span><span class="p">:</span> <span class="n">parameterPort</span><span class="p">)</span> <span class="p">,</span> <span class="nv">clientLongTermKey</span><span class="p">:</span> <span class="kt">N</span><span class="err">₂</span><span class="o">.</span><span class="kt">SecretKey</span><span class="p">(),</span> <span class="nv">serverLongTermKey</span><span class="p">:</span> <span class="n">secretKey</span><span class="o">.</span><span class="n">publicKey</span><span class="p">)</span>
+        <span class="k">try!</span> <span class="n">c</span><span class="o">.</span><span class="nf">authenticate</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">100</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+            <span class="k">try!</span> <span class="n">c</span><span class="o">.</span><span class="nf">performRequest</span><span class="p">(</span><span class="n">badBytes</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">end</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="nf">timeIntervalSinceDate</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Server source code:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Cocoa</span>
+<span class="kd">import</span> <span class="kt">Nitrogen</span>
+<span class="kd">import</span> <span class="kt">NaOH</span>
+
+<span class="k">let</span> <span class="nv">badBytes</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">](</span><span class="nv">count</span><span class="p">:</span> <span class="mi">35000</span><span class="p">,</span> <span class="nv">repeatedValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<span class="kd">class</span> <span class="kt">RD</span> <span class="p">:</span> <span class="kt">N</span><span class="err">₂</span><span class="kt">RequestDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">handleRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">badBytes</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">NSViewController</span> <span class="p">{</span>
+
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">keyPath</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">()</span><span class="o">.</span><span class="nf">pathForResource</span><span class="p">(</span><span class="s">"insecureMIDKey"</span><span class="p">,</span> <span class="nv">ofType</span><span class="p">:</span> <span class="s">"key"</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">try!</span> <span class="kt">NSFileManager</span><span class="o">.</span><span class="nf">defaultManager</span><span class="p">()</span><span class="o">.</span><span class="nf">setAttributes</span><span class="p">([</span><span class="kt">NSFilePosixPermissions</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">(</span><span class="nv">short</span><span class="p">:</span> <span class="mi">0</span><span class="n">o0600</span><span class="p">)],</span> <span class="nv">ofItemAtPath</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">secretKey</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">N</span><span class="err">₂</span><span class="o">.</span><span class="kt">SecretKey</span><span class="p">(</span><span class="nv">readFromFile</span><span class="p">:</span> <span class="n">keyPath</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">s</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">N</span><span class="err">₂</span><span class="o">.</span><span class="kt">Server</span><span class="p">(</span><span class="nv">address</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">printableAddress</span><span class="p">:</span> <span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="nv">port</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="nv">serverLongTermKey</span><span class="p">:</span> <span class="n">secretKey</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">boundAddress</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">stream</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">s</span><span class="o">.</span><span class="nf">accept</span><span class="p">(</span><span class="kt">RD</span><span class="p">())</span>
+        <span class="k">try!</span> <span class="n">stream</span><span class="o">.</span><span class="nf">authenticate</span><span class="p">()</span>
+        <span class="k">while</span> <span class="kc">true</span> <span class="p">{</span>
+            <span class="k">try!</span> <span class="n">stream</span><span class="o">.</span><span class="nf">handleOneRequest</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Then we would measure time across Nitrogen as seen from the client, playing with different request sizes, tweaking some internal values inside Nitrogen, any grasp for straws. Still nothing. Graph after graph after graph, identical populations:</p>
+
+<p><img src="/images/lowtide_second_experiment.png" alt="second-test" /></p>
+
+<p>So we started thinking more critically. We have a wireshark trace (not shown) and we have strong reason to believe this is a bug. Why can we reproduce in one place and not here? What is different? We have two apps. The request sizes are the same. What is so different about the first environment so that it can produce the bug?</p>
+
+<p>Through hours of trial and much error…</p>
+
+<ol>
+  <li>The actual speedbump is inside the kernel.</li>
+  <li>Because of the special, kernely nature of this bug, it is ONLY reproducible on two machines.
+    <ol>
+      <li>NOT in-process</li>
+      <li>NOT between two applications on the same computer</li>
+      <li>NOT between mac and simulator</li>
+      <li>NOT from one computer, out via wifi, to a router, back via eithernet, to the same computer</li>
+      <li>NOT between e.g. Linux and OSX VMs on the same machine</li>
+      <li>ONLY between two ACTUALLY distinct HARDWARE devices. Like, unless you have TWO POWER BUTTONS, you will not see this behavior.</li>
+    </ol>
+  </li>
+  <li>Our CI setup, as it turned out, was not configured to test that. To the extent that we test this scenario outside CI, we expect additional network latency anyway, and we just “sort of assume” the extra latency we see is legitimate.</li>
+  <li>Spoiler alert: it’s <strong>not</strong>.</li>
+</ol>
+
+<p>When we started testing honest-to-god multi-device setups in the lab, we got our first result.</p>
+
+<p><img src="/images/lowtide-multi-device-tests.png" alt="multi-device-test" /></p>
+
+<p>Aha! One doesn’t need a p-value to know that’s significant! They barely even touch!</p>
+
+<p>That’s just the first draft. It’s a 2x performance improvement on the sample apps shown above.</p>
+
+<p>After we knew what lever controlled this problem, we were able to go back into our tooling and calculate all new parameters that optimize this case, and then feed back into our performance model. A little supercomputing (thank you Amazon) time later, tweak a bunch of data tables, recompile, <strong>and hold onto your seat, because this is an amazing graph</strong>…</p>
+
+<p><img src="/images/lowtide-multi-device-tests-v2.png" alt="mult-device-test-v2" /></p>
+
+<p>Not only is this benchmark now 4X faster, but we <em>killed the variaton in the performance as well</em>. We are now consistently 4X faster which – if you know a little arcana about networking – is a lot more interesting than the number itself.</p>
+
+<p>For funsies we ran some actual statistical analysis on the 2.2 benchmark against the new 2.2.1 benchmark, and here are the results:</p>
+
+<p><img src="/images/lowtide-stat-table.png" alt="lowtide-stat-table" /></p>
+
+<p>For those unfamiliar with how to interpret esoteric units like “Cohen’s d”, the “effect size” in English for these:</p>
+
+<p><img src="/images/lowtide-stat-table-english.png" alt="cohen-d-english" /></p>
+
+<p>So this is the algorithm we’ve started shipping in 2.2.1. We strongly recommend updating!</p>
+
+<div class="text-center">
+<a href="/sign-up/" class="btn btn-warning btn-lg btn-sidepadding">Try Caffeine For Free</a>
+</div>
+<p><br /></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+            engineering, performance, file-transfers, small objects
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=http://caffei.net/2016-04-04-LOWTIDE-Investigation/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://caffei.net/2016-04-04-LOWTIDE-Investigation/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Google Plus -->
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://caffei.net/2016-04-04-LOWTIDE-Investigation/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+</section>
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        
+        <li class="next">
+          <a href="/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/" data-toggle="tooltip" data-placement="top" title="Caffeine's Effect on a CDN-Hosted Image">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-3">
+              <span class="footer-header">Getting Started</span>
+      <ul>
+      <li>
+        <a href="/sign-up" title="Documentation">
+              <span class="">
+                Learn More/Get Our Whitepaper
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Xcode Integration
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="http://caffei.net/docs" title="Documentation">
+              <span class="">
+                Documentation
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+        <div class="col-lg-3">
+                  <span class="footer-header">What we do</span>
+
+      <ul>
+        
+      <li>
+        <a href="/benefits">
+              <span class="">
+                Caffeine Benefits
+              </span>
+            </a>
+          </li>
+      <li>
+        <a href="/pricing">
+              <span class="">
+                Plans/Pricing
+              </span>
+            </a>
+          </li>
+          <li>
+        <a href="/2016-10-01-how-does-Caffeine-work/">
+              <span class="">
+                How Does Caffeine Work?
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+              <span class="footer-header">Community</span>
+      <ul>
+      <li>
+        <a href="/customers" title="Documentation">
+              <span class="">
+              Case Studies
+              </span>
+            </a>
+          </li>
+          <li>
+       <li>
+            <a href="/blog" title="Documentation">
+              <span class="">
+                Blog
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/videos" title="Videos">
+              <span class="">
+                Videos
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3">
+              <span class="footer-header">About Us</span>
+      <ul>
+        
+          <li>
+            <a href="/about-us" title="Documentation">
+              <span class="">
+                About
+              </span>
+            </a>
+          </li>
+       <li>
+            <a href="/terms-of-service" title="Documentation">
+              <span class="">
+                Terms of Service
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/privacy" title="Documentation">
+              <span class="">
+                Privacy Policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          <p style="font-size: 20px">We believe you can build a great application!<p>
+          
+          
+		  
+		  
+          <li>
+            <a href="mailto:help@caffei.net" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+		  
+		  
+      
+      
+		  
+           
+        </ul>
+
+        <p class="copyright text-muted">
+		  Caffeine Computing Inc.
+		  &nbsp;&bull;&nbsp;
+		  2016
+
+		  
+	    </p>
+	        
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-76795314-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+
+
+  
+  </body>
+</html>

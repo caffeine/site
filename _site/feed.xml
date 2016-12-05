@@ -28,5 +28,16 @@
         <guid isPermaLink="true">http://caffei.net/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/</guid>
       </item>
     
+      <item>
+        <title>A Performance Breakthrough on Small File Transfers</title>
+        <description>
+          
+          A performance breakthrough on small file transfers (Codename: LOWTIDE) While testing Nitrogen, the protocol within Caffeine, using small files (&amp;lt;2mb) we discovered peculiar behavior that soon launched an investigation and a subsequent performance breakthrough. Internally, we had conflict. One team thought that Caffeine was going as fast as it could,...
+        </description>
+        <pubDate>Mon, 04 Apr 2016 00:00:00 -0700</pubDate>
+        <link>http://caffei.net/2016-04-04-LOWTIDE-Investigation/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-04-04-LOWTIDE-Investigation/</guid>
+      </item>
+    
   </channel>
 </rss>
