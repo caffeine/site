@@ -40,6 +40,17 @@
       </item>
     
       <item>
+        <title>Response Times vs. Payload Size</title>
+        <description>
+          
+          How does the performance of Caffeine degrade as the payload size becomes larger? We compare the response times of downloading increasingly large files using both Caffeine and HTTP. In Atlanta, Georgia, we put a server hosting 20 files incrementing in size by 200kb starting at 200kb and going to 4mb....
+        </description>
+        <pubDate>Fri, 01 Apr 2016 00:00:00 -0700</pubDate>
+        <link>http://caffei.net/2016-04-01-response-time-vs-payload-size/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-04-01-response-time-vs-payload-size/</guid>
+      </item>
+    
+      <item>
         <title>Analyzing download-times of images with and without Caffeine</title>
         <description>
           

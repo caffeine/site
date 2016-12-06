@@ -6,12 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Caffeine's blog</title>
+  <title>Response Times vs. Payload Size</title>
 
   <meta name="author" content="Caffeine Computing Inc." />
   
-  
-  <meta name="description" content="Blog subtitle">
   
 
   <link rel="alternate" type="application/rss+xml" title="Caffeine - Caffeine cuts all the fat out of iOS content loading" href="/feed.xml" />
@@ -49,10 +47,10 @@
   <link rel="stylesheet" href="/css/custom.css"/>
 
   <!-- Facebook OpenGraph tags -->
-  <meta property="og:title" content="Caffeine's blog" />
+  <meta property="og:title" content="Response Times vs. Payload Size" />
   <meta property="og:type" content="website" />
   
-  <meta property="og:url" content="http://caffei.net/blog/" />
+  <meta property="og:url" content="http://caffei.net/2016-04-01-response-time-vs-payload-size/" />
   
   
   <meta property="og:image" content="http://caffei.net/img/avatar-icon.png" />
@@ -62,8 +60,8 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@" />
   <meta name="twitter:creator" content="@" />
-  <meta name="twitter:title" content="Caffeine's blog" />
-  <meta name="twitter:description" content="How Does Caffeine work? Posted on October 1, 2016 [Read&amp;nbsp;More] Tags: engineering Caffeine&#39;s Effect on a CDN-Hosted Image Posted on June 19, 2016 The Effect of Caffeine on a CDN’s image [Read&amp;nbsp;More] Tags: engineering, CDN, image-delivery A Performance Breakthrough on Small File Transfers Posted on April 4, 2016 A performance..." />
+  <meta name="twitter:title" content="Response Times vs. Payload Size" />
+  <meta name="twitter:description" content="How does the performance of Caffeine degrade as the payload size becomes larger? We compare the response times of downloading increasingly large files using both Caffeine and HTTP. In Atlanta, Georgia, we put a server hosting 20 files incrementing in size by 200kb starting at 200kb and going to 4mb...." />
   
   <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
   
@@ -164,8 +162,37 @@
 
 
 
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="/images/increasing-payload-bg.jpg"
+		
+	  
+    
+  ></div>
 
-<header class="header-section ">
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Response Times vs. Payload Size</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on April 1, 2016</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
 
 
 </header>
@@ -174,169 +201,122 @@
 
 
 
-<div class="container" role="main">
+<div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <div class="posts-list">
-  
-  <article class="post-preview">
-    <a href="/2016-10-01-how-does-Caffeine-work/">
-    <h2 class="post-title">How Does Caffeine work?</h2>
 
-    
-    </a>
+      <article role="main" class="blog-post">
+        <h2 id="how-does-the-performance-of-caffeine-degrade-as-the-payload-size-becomes-larger">How does the performance of Caffeine degrade as the payload size becomes larger?</h2>
 
-    <p class="post-meta">
-      Posted on October 1, 2016
-    </p>
+<p>We compare the response times of downloading increasingly large files using both Caffeine and HTTP.</p>
 
-    <div class="post-entry">
-      
-    
-    
-      
-        
+<p>In Atlanta, Georgia, we put a server hosting 20 files incrementing in size by 200kb starting at 200kb and going to 4mb. For a given file size, we take 10 response-time readings from an iPhone client in Cambridge, MA, on Wifi and record them to a table while normalizing network conditions (please <a href="http://www.caffei.net/contact-us/">contact us</a> if you’d like all this raw data).</p>
 
+<p>Disclaimer: Caffeine does not modify your payload. We do no compression. We are skeptical of compression-based performance techniques due to the security vulnerabilities they create like <a href="https://en.wikipedia.org/wiki/CRIME">CRIME</a>.</p>
 
+<h2 id="findings">Findings</h2>
 
-    <a href="/2016-10-01-how-does-Caffeine-work/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
+<p>Both HTTP and Caffeine increase in response time about linear to payload size. This is intuitive: the larger the transfer the slower any network request. Caffeine, however, remains consistently at least 200ms faster than HTTP. This is pictured below.</p>
 
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering
-      
-    </div>
-    
+<p><img src="/images/caffeine-v-http-g1.png" alt="caffeine-v-http-g1" /></p>
 
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/">
-    <h2 class="post-title">Caffeine's Effect on a CDN-Hosted Image</h2>
+<p>For the 200kb request, the smallest, Caffeine takes around 50ms while HTTP takes around 300ms. For the 4mb request, the largest, Caffeine takes about 700ms while HTTP takes about 950ms.</p>
 
-    
-    </a>
+<h3 id="how-does-https-response-time-compare-relative-to-caffeines">How does HTTP’s response-time compare relative to Caffeine’s?</h3>
 
-    <p class="post-meta">
-      Posted on June 19, 2016
-    </p>
+<p>The graph below shows the response-time multiples of HTTP over Caffeine, indicating how much longer HTTP takes to respond compared to Caffeine for a given request size.</p>
 
-    <div class="post-entry">
-      The Effect of Caffeine on a CDN’s image
+<p><img src="/images/caffeine-v-http-g2.png" alt="caffeine-v-http-g2" /></p>
 
+<p>The smaller the request, the exponentially slower HTTP relative to Caffeine. HTTP is 6.05x slower than Caffeine for delivering 200kb of data. On the other extreme, HTTP is only 1.37x slower than Caffeine for delivering 4mb of data. For payload sizes less than or equal to 1.4mb, Caffeine offers a 200% performance improvement over HTTP for equivalent payload sizes.</p>
 
-    <a href="/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
+<p>As the amount of data transferred becomes larger, the less latency-bound the transfer and the more it becomes a problem of bandwidth (and thus in the realm of your carrier’s hardware).</p>
 
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering, CDN, image-delivery
-      
-    </div>
-    
+<h2 id="closing-thoughts">Closing Thoughts</h2>
 
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-04-04-LOWTIDE-Investigation/">
-    <h2 class="post-title">A Performance Breakthrough on Small File Transfers</h2>
+<p>Of course there are video/image apps that will involve requests whose payloads are much larger, and if you’re one of them, we’re interested to know if you care about improving performance! We have several ideas for how we can further improve performance for larger objects.</p>
 
-    
-    </a>
+<p>During R&amp;D of Caffeine, we drew heavily on application data from all the popular apps in the real world and found it exceedingly rare for any given request to be larger than 400kb. Apps seem to be comprised of many small requests, not a few big ones.</p>
 
-    <p class="post-meta">
-      Posted on April 4, 2016
-    </p>
-
-    <div class="post-entry">
-      A performance breakthrough on small file transfers
-
-
-    <a href="/2016-04-04-LOWTIDE-Investigation/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering, performance, file-transfers, small objects
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-04-01-response-time-vs-payload-size/">
-    <h2 class="post-title">Response Times vs. Payload Size</h2>
-
-    
-    </a>
-
-    <p class="post-meta">
-      Posted on April 1, 2016
-    </p>
-
-    <div class="post-entry">
-      How does the performance of Caffeine degrade as the payload size becomes larger?
-
-
-    <a href="/2016-04-01-response-time-vs-payload-size/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        analysis, report, small-object, large-object
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-02-29-Downloading-images-with-and-without-Caffeine/">
-    <h2 class="post-title">Analyzing download-times of images with and without Caffeine</h2>
-
-    
-    </a>
-
-    <p class="post-meta">
-      Posted on February 29, 2016
-    </p>
-
-    <div class="post-entry">
-      Caffeine reduces network latency in native iOS applications. (PDF)
-
-
-    <a href="/2016-02-29-Downloading-images-with-and-without-Caffeine/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering, image-delivery
-      
-    </div>
-    
-
-   </article>
-  
+<div class="text-center">
+<a href="/customers" class="btn btn-warning btn-lg btn-sidepadding">Show me who is using Caffeine</a>
 </div>
+<p><br /></p>
 
 
-	    
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+            analysis, report, small-object, large-object
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=http://caffei.net/2016-04-01-response-time-vs-payload-size/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://caffei.net/2016-04-01-response-time-vs-payload-size/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Google Plus -->
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://caffei.net/2016-04-01-response-time-vs-payload-size/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+</section>
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-02-29-Downloading-images-with-and-without-Caffeine/" data-toggle="tooltip" data-placement="top" title="Analyzing download-times of images with and without Caffeine">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2016-04-04-LOWTIDE-Investigation/" data-toggle="tooltip" data-placement="top" title="A Performance Breakthrough on Small File Transfers">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+
+        </div>
+      
     </div>
   </div>
 </div>
-
 
     <footer>
   <div class="container beautiful-jekyll-footer">
