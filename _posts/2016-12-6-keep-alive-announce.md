@@ -26,14 +26,3 @@ As always, please reach out to our engineers at anytime at help@caffei.net. We a
 <a href='/customers' class='btn btn-warning btn-lg btn-sidepadding'>Show me who is using Caffeine</a>
 </div>
 <br />
-<!--   <h4> Caffeine is loved by these fine companies...</h4>
-  <div class="text-center">
-    <img src="{{ site.baseurl }}/img/logoboard.png" />
-  </div> -->
-</section>
-
-<!-- <div class="text-center">
-  <img src="{{ site.baseurl }}/img/logoboard.png" />
-</div>
-
- -->
