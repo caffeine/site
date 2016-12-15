@@ -7,6 +7,17 @@
     <atom:link href="http://caffei.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Announcing HTTP Keep-Alive Support</title>
+        <description>
+          
+          Announcing HTTP Keep-Alive Support Background Unlike a CDN, Caffeine routes all traffic to the application’s origin server for every single request. This allows applications using Caffeine to accelerate not just static content, but any API request. It doesn’t matter if an app delivers realtime stock data or routes text messages...
+        </description>
+        <pubDate>Tue, 06 Dec 2016 00:00:00 -0800</pubDate>
+        <link>http://caffei.net/2016-12-06-keep-alive-announce/</link>
+        <guid isPermaLink="true">http://caffei.net/2016-12-06-keep-alive-announce/</guid>
+      </item>
+    
+      <item>
         <title>How Does Caffeine work?</title>
         <description>
           

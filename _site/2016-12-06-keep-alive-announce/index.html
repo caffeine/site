@@ -6,12 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Caffeine's blog</title>
+  <title>Announcing HTTP Keep-Alive Support</title>
 
   <meta name="author" content="Caffeine Computing Inc." />
   
-  
-  <meta name="description" content="Blog subtitle">
   
 
   <link rel="alternate" type="application/rss+xml" title="Caffeine - Caffeine cuts all the fat out of iOS content loading" href="/feed.xml" />
@@ -49,10 +47,10 @@
   <link rel="stylesheet" href="/css/custom.css"/>
 
   <!-- Facebook OpenGraph tags -->
-  <meta property="og:title" content="Caffeine's blog" />
+  <meta property="og:title" content="Announcing HTTP Keep-Alive Support" />
   <meta property="og:type" content="website" />
   
-  <meta property="og:url" content="http://caffei.net/blog/" />
+  <meta property="og:url" content="http://caffei.net/2016-12-06-keep-alive-announce/" />
   
   
   <meta property="og:image" content="http://caffei.net/img/avatar-icon.png" />
@@ -62,8 +60,8 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@" />
   <meta name="twitter:creator" content="@" />
-  <meta name="twitter:title" content="Caffeine's blog" />
-  <meta name="twitter:description" content="Announcing HTTP Keep-Alive Support Posted on December 6, 2016 Announcing HTTP Keep-Alive Support [Read&amp;nbsp;More] Tags: engineering How Does Caffeine work? Posted on October 1, 2016 [Read&amp;nbsp;More] Tags: engineering Caffeine&#39;s Effect on a CDN-Hosted Image Posted on June 19, 2016 The Effect of Caffeine on a CDN’s image [Read&amp;nbsp;More] Tags: engineering,..." />
+  <meta name="twitter:title" content="Announcing HTTP Keep-Alive Support" />
+  <meta name="twitter:description" content="Announcing HTTP Keep-Alive Support Background Unlike a CDN, Caffeine routes all traffic to the application’s origin server for every single request. This allows applications using Caffeine to accelerate not just static content, but any API request. It doesn’t matter if an app delivers realtime stock data or routes text messages..." />
   
   <meta name="twitter:image" content="http://caffei.net/img/avatar-icon.png" />
   
@@ -174,178 +172,101 @@
 
 
 
-<div class="container" role="main">
+<div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <div class="posts-list">
-  
-  <article class="post-preview">
-    <a href="/2016-12-06-keep-alive-announce/">
-    <h2 class="post-title">Announcing HTTP Keep-Alive Support</h2>
 
-    
-    </a>
+      <article role="main" class="blog-post">
+        <h1 id="announcing-http-keep-alive-support">Announcing HTTP Keep-Alive Support</h1>
 
-    <p class="post-meta">
-      Posted on December 6, 2016
-    </p>
+<h3 id="background">Background</h3>
 
-    <div class="post-entry">
-      Announcing HTTP Keep-Alive Support
+<p>Unlike a CDN, Caffeine routes all traffic to the application’s origin server for every single request. This allows applications using Caffeine to accelerate not just static content, but any API request. It doesn’t matter if an app delivers realtime stock data or routes text messages to friends. Caffeine provides performance and security to any API.</p>
 
+<p>All requests flowing through Caffeine stop at a Caffeine server and are converted back into HTTP/S before arriving at the application’s origin server. This makes integrating Caffeine a snap, but it introduces performance delays because Caffeine doesn’t go all the way to the origin’s webserver. HTTP/S plays a role for as much as 20% of the total request’s roundtrip.</p>
 
-    <a href="/2016-12-06-keep-alive-announce/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
+<h2 id="caffeine-now-supporting-http-keep-alive">Caffeine Now Supporting HTTP Keep-Alive</h2>
 
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering
-      
-    </div>
-    
+<p>If your application environment uses HTTP keep-alive, Caffeine will now implement the same between our Caffeine servers and your origin webserver along the HTTP/S path.</p>
 
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-10-01-how-does-Caffeine-work/">
-    <h2 class="post-title">How Does Caffeine work?</h2>
+<p>For our customers already using keep-alive and Caffeine, there is no need to update.  We’ve seen additional performance improvements of as much as 40%. We hope you enjoy the faster response times!</p>
 
-    
-    </a>
+<p>As always, please reach out to our engineers at anytime at help@caffei.net. We are here to support you and make your application as fast and as secure as possible.</p>
 
-    <p class="post-meta">
-      Posted on October 1, 2016
-    </p>
-
-    <div class="post-entry">
-      
-    
-    
-      
-        
-
-
-
-    <a href="/2016-10-01-how-does-Caffeine-work/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/">
-    <h2 class="post-title">Caffeine's Effect on a CDN-Hosted Image</h2>
-
-    
-    </a>
-
-    <p class="post-meta">
-      Posted on June 19, 2016
-    </p>
-
-    <div class="post-entry">
-      The Effect of Caffeine on a CDN’s image
-
-
-    <a href="/2016-06-19-The-Effect-Of-Caffeine-On-A-CDN/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering, CDN, image-delivery
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-04-04-LOWTIDE-Investigation/">
-    <h2 class="post-title">A Performance Breakthrough on Small File Transfers</h2>
-
-    
-    </a>
-
-    <p class="post-meta">
-      Posted on April 4, 2016
-    </p>
-
-    <div class="post-entry">
-      A performance breakthrough on small file transfers
-
-
-    <a href="/2016-04-04-LOWTIDE-Investigation/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        engineering, performance, file-transfers, small objects
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/2016-04-01-response-time-vs-payload-size/">
-    <h2 class="post-title">Response Times vs. Payload Size</h2>
-
-    
-    </a>
-
-    <p class="post-meta">
-      Posted on April 1, 2016
-    </p>
-
-    <div class="post-entry">
-      How does the performance of Caffeine degrade as the payload size becomes larger?
-
-
-    <a href="/2016-04-01-response-time-vs-payload-size/" class="post-read-more">[Read&nbsp;More]</a>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags: 
-      
-        analysis, report, small-object, large-object
-      
-    </div>
-    
-
-   </article>
-  
+<div class="text-center">
+<a href="/customers" class="btn btn-warning btn-lg btn-sidepadding">Show me who is using Caffeine</a>
 </div>
+<p><br /></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+            engineering
+          
+        </div>
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<ul class="pager main-pager">
-  
-  
-  <li class="next">
-    <a href="/blog/page2">Older Posts &rarr;</a>
-  </li>
-  
-</ul>
 
-	    
+
+<section id = "social-share-section">
+
+  <!--- Share on Twitter -->
+  
+    <a href="https://twitter.com/intent/tweet?text=http://caffei.net/2016-12-06-keep-alive-announce/"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fa fa-fw fa-twitter" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Facebook -->
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://caffei.net/2016-12-06-keep-alive-announce/"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fa fa-fw fa-facebook" aria-hidden="true"></span>
+    </a>
+  
+
+  <!--- Share on Google Plus -->
+  
+
+  <!--- Share on LinkedIn -->
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://caffei.net/2016-12-06-keep-alive-announce/"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fa fa-fw fa-linkedin" aria-hidden="true"></span>
+    </a>
+  
+
+</section>
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2016-10-01-how-does-Caffeine-work/" data-toggle="tooltip" data-placement="top" title="How Does Caffeine work?">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+
+        </div>
+      
     </div>
   </div>
 </div>
-
 
     <footer>
   <div class="container beautiful-jekyll-footer">
