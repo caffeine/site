@@ -129,11 +129,11 @@ our proxy server.</li>
 <a href='#6_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='6_caffeine_defaults_to_off_so_no_traffic_will_be_accelerated_until_specific_urls_or_sets_of_urls_are_specified_this_is_done_through_caffeinehttpproxy_s_allow_and_deny_functions'>6. Caffeine defaults to off, so no traffic will be accelerated until specific URLs or sets of URLs are specified. This is done through CaffeineHTTPProxy’s allow and deny functions.</h3>
 
 <p>Swift: </p>
-<pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="err">“</span><span class="nv">http</span><span class="p">:</span><span class="c1">//google.com”)</span>
+<pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">allow</span><span class="p">(</span><span class="err">"</span><span class="nv">http</span><span class="p">:</span><span class="c1">//google.com")</span>
 </code></pre>
 
 <p>Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="err">@”</span><span class="nf">http</span><span class="p">:</span><span class="c1">//google.com”];
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="err">@"</span><span class="nf">http</span><span class="p">:</span><span class="c1">//google.com"];
 </span></code></pre>
 
 <p>To accelerate sets of URLs use the asterisk <q>*</q> to denote prefixes or suffixes.</p>
@@ -145,7 +145,7 @@ CaffeineHTTPProxy.deny("</span><span class="nv">https</span><span class="p">:</s
 </code></pre>
 
 <p>Objective-C:</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="err">@”</span><span class="nf">http</span><span class="p">:</span><span class="c1">//google.com/*"];
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">allow</span><span class="p">:</span><span class="err">@"</span><span class="nf">http</span><span class="p">:</span><span class="c1">//google.com/*"];
 </span></code></pre>
 
 <p>See CaffeineHTTPProxy&rsquo;s <a href="./Classes/CaffeineHTTPProxy.html#/s:ZFC8Proxeine17CaffeineHTTPProxy5allowFSST_">allow:</a> and <a href="./Classes/CaffeineHTTPProxy.html#/s:ZFC8Proxeine17CaffeineHTTPProxy4denyFSST_">deny:</a> for more examples of usage. </p>
