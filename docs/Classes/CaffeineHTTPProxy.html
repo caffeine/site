@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-76795314-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 <html lang="en">
   <head>
     <title>CaffeineHTTPProxy Class Reference</title>
@@ -24,7 +14,7 @@
     <a title="CaffeineHTTPProxy Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (87% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -42,6 +32,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CaffeineHTTPProxy.html">CaffeineHTTPProxy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
               </li>
             </ul>
           </li>
@@ -280,16 +278,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Calling <code>start</code> and in debug mode will print additional information to the console about Caffeine for debugging purposes.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">CaffeineHTTPProxy</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">GCDAsyncUdpSocketDelegate</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">start</span><span class="p">(</span><span class="nv">debug</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>debug</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to start Caffeine in debug mode</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -377,7 +395,7 @@
 <span class="p">[</span><span class="n">CaffeineHTTPProxy</span> <span class="nf">deny</span><span class="p">:</span><span class="s">@"http://google.com/humans.txt"</span><span class="p">];</span>
 </code></pre>
 
-<p>This allow configurations (above) specify that the following will NOT be Caffeinated:</p>
+<p>This deny configuration (above) specify that the following will NOT be Caffeinated:</p>
 
 <ul>
 <li>all PNG files</li>
@@ -392,6 +410,42 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">deny</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC8Proxeine17CaffeineHTTPProxy4denyFOS_10HTTPMethodT_"></a>
+                    <a name="//apple_ref/swift/Method/deny(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC8Proxeine17CaffeineHTTPProxy4denyFOS_10HTTPMethodT_">deny(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Decaffeinates specific requests by conditioning on their HTTP methods. Call <code>deny</code> inside your AppDelegate, within the <code>application:didFinishLaunchingWithOptions:</code> function before <code><a href="../Classes/CaffeineHTTPProxy.html#/s:ZFC8Proxeine17CaffeineHTTPProxy5startFT_T_">start()</a></code>.
+By default, all HTTP methods are allowed.</p>
+
+<p>Swift:</p>
+
+<pre class="highlight swift"><code><span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="o">.</span><span class="kt">HEAD</span><span class="p">)</span>
+<span class="kt">CaffeineHTTPProxy</span><span class="o">.</span><span class="nf">deny</span><span class="p">(</span><span class="o">.</span><span class="kt">CONNECT</span><span class="p">)</span>
+</code></pre>
+
+<p>Requests with their <code>httpMethod</code> set to <q>HEAD</q> or <q>CONNECT</q> will not use Caffeine.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">deny</span><span class="p">(</span><span class="n">_</span> <span class="nv">httpMethod</span><span class="p">:</span> <span class="kt"><a href="../Enums/HTTPMethod.html">HTTPMethod</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -430,8 +484,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-09-19)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

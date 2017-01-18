@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-76795314-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 <html lang="en">
   <head>
     <title>URLSessionConfiguration Extension Reference</title>
@@ -24,7 +14,7 @@
     <a title="URLSessionConfiguration Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (87% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -42,6 +32,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CaffeineHTTPProxy.html">CaffeineHTTPProxy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
               </li>
             </ul>
           </li>
@@ -89,29 +87,29 @@
 <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">configuration</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="kt">URL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"http://google.com"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
-   <span class="nf">print</span><span class="p">(</span><span class="s">"I used Caffeine to get here"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"I used Caffeine to get here"</span><span class="p">)</span>
 <span class="p">}</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
 </code></pre>
 
 <p>Swift 2.3:</p>
 
-<pre class="highlight swift"><code>   <span class="k">let</span> <span class="nv">configuration</span> <span class="o">=</span> <span class="kt">NSURLSessionConfiguration</span><span class="o">.</span><span class="nf">ephemeralSessionConfiguration</span><span class="p">()</span>
-   <span class="n">configuration</span><span class="o">.</span><span class="nf">addCaffeine</span><span class="p">()</span>
-   <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">NSURLSession</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">configuration</span><span class="p">)</span>
-   <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">NSMutableURLRequest</span><span class="p">(</span><span class="kt">URL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"http://google.com"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
-   <span class="n">session</span><span class="o">.</span><span class="nf">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
-       <span class="nf">print</span><span class="p">(</span><span class="s">"I used Caffeine to get here"</span><span class="p">)</span>
-   <span class="p">}</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">configuration</span> <span class="o">=</span> <span class="kt">NSURLSessionConfiguration</span><span class="o">.</span><span class="nf">ephemeralSessionConfiguration</span><span class="p">()</span>
+<span class="n">configuration</span><span class="o">.</span><span class="nf">addCaffeine</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">NSURLSession</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">configuration</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">NSMutableURLRequest</span><span class="p">(</span><span class="kt">URL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"http://google.com"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="nf">dataTaskWithRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"I used Caffeine to get here"</span><span class="p">)</span>
+<span class="p">}</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
 </code></pre>
 
 <p>Objective-C:</p>
 
-<pre class="highlight objective_c"><code>   <span class="n">NSURLSessionConfiguration</span> <span class="o">*</span><span class="n">config</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURLSessionConfiguration</span> <span class="nf">ephemeralSessionConfiguration</span><span class="p">];</span>
-   <span class="p">[</span><span class="n">config</span> <span class="nf">addCaffeine</span><span class="p">];</span>
-   <span class="n">NSURLSession</span> <span class="o">*</span><span class="n">session</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURLSession</span> <span class="nf">sessionWithConfiguration</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
-   <span class="p">[</span><span class="n">session</span> <span class="nf">dataTaskWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"http://google.com"</span><span class="p">]</span> <span class="nf">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">data</span><span class="p">,</span> <span class="n">NSURLResponse</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">response</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
-       <span class="n">NSLog</span><span class="p">(</span><span class="s">@"I used Caffeine to get here"</span><span class="p">);</span>
-   <span class="p">}];</span>
+<pre class="highlight objective_c"><code><span class="n">NSURLSessionConfiguration</span> <span class="o">*</span><span class="n">config</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURLSessionConfiguration</span> <span class="nf">ephemeralSessionConfiguration</span><span class="p">];</span>
+<span class="p">[</span><span class="n">config</span> <span class="nf">addCaffeine</span><span class="p">];</span>
+<span class="n">NSURLSession</span> <span class="o">*</span><span class="n">session</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURLSession</span> <span class="nf">sessionWithConfiguration</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
+<span class="p">[</span><span class="n">session</span> <span class="nf">dataTaskWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"http://google.com"</span><span class="p">]</span> <span class="nf">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">data</span><span class="p">,</span> <span class="n">NSURLResponse</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">response</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@"I used Caffeine to get here"</span><span class="p">);</span>
+<span class="p">}];</span>
 </code></pre>
 
 <div class="aside aside-warning">
@@ -143,8 +141,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-09-19)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2017-01-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
