@@ -9,6 +9,7 @@
   
   {% if page.subtitle %}
   <meta name="description" content="{{ page.subtitle }}">
+  <meta property="og:description" content="{{ page.subtitle }}" />
   {% endif %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
