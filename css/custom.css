@@ -495,3 +495,8 @@ h1#pricing-header {
   font-size: 13px;
 }
 
+.outlets img {
+  max-width: 100%;
+  height: auto;
+}
+
