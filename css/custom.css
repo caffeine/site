@@ -85,7 +85,7 @@ section {
   background-position: 100% 0%;
   background-size: contain;*/
   height: 300px;
-  background: url("/img/MID.gif") no-repeat 85% 70px;
+  background: url("http://res.cloudinary.com/duq3nqdkt/image/upload/v1484772925/MID_tswmxc.gif") no-repeat 85% 70px;
   background-size: 80% auto;
   background-position: right;
 }
